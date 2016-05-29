@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<md-menu>
+  <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+    <md-icon md-menu-origin md-svg-icon="{% static 'svg/user.svg' %}"></md-icon>
+  </md-button>
+  <md-menu-content width="4">
+     <md-menu-item>
+      <p>Sunday Goodman</p>
+    </md-menu-item>
+    <md-menu-divider></md-menu-divider>
+   <md-menu-item>
+      <md-button ng-click="logOut()">
+      <md-icon md-menu-origin md-svg-icon="{% static 'svg/logout.svg' %}"></md-icon>
+         Logout
+      </md-button>
+    </md-menu-item>
+    <md-menu-divider></md-menu-divider>
+
+  </md-menu-content>
+</md-menu>

@@ -1,0 +1,31 @@
+{
+  "name": "Bucketlists",
+  "version": "1.1.7",
+  "authors": [
+    "Nwuguru Sunday"
+  ],
+  "description": "Things that you need to do before death",
+  "main": "manage.py",
+  "keywords": [
+    "angularjs",
+    "Python",
+    "Django"
+  ],
+  "license": "MIT",
+  "homepage": "http://littlehope.herokuapp.com/",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.3",
+    "angular-resource": "~1.5.3",
+    "angular-sanitize": "~1.5.3",
+    "angular-animate": "~1.5.3",
+    "angular-material": "~1.1.0-rc2"
+  }
+}

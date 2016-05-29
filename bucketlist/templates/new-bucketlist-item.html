@@ -1,0 +1,10 @@
+<md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">New Bucket List Item</h1>
+      </md-toolbar>
+      <md-content ng-controller="RightCtrl" layout-padding>
+        <md-input-container class="md-block">
+          <input ng-model="bucket.task" type="text" placeholder="Task (required)" ng-required="true">
+        </md-input-container>
+        <md-button class="md-raised md-primary right"  ng-click="close()">Submit</md-button>
+
+      </md-content>
