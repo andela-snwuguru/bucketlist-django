@@ -1,0 +1,113 @@
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+    background-color: rgb(217, 224, 220);
+}
+
+.padding{
+  padding: 10px;
+}
+
+.right{
+  float: right;
+}
+
+.brush {
+  font-family: 'Brush Script MT', cursive;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 26.4px;
+}
+
+.bottomSheets .md-inline-list-icon-label {
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: -10px;
+  height: 24px;
+  vertical-align: middle; }
+.bottomSheets .md-grid-item-content {
+  height: 450px;
+}
+.bottomSheets .md-grid-item-content md-icon {
+  height: 48px;
+  width: 48px;
+}
+.bottomSheets .md-grid-text {
+  padding-bottom: 5px;
+
+}
+.bottomSheets md-bottom-sheet.md-grid md-list-item .md-grid-text{
+  padding-top: 25px;
+}
+.bottomSheets md-list-item, .bottomSheets md-list-item .md-list-item-inner {
+  min-height: 48px;
+}
+.bottomSheets h2 {
+  line-height: 36px;
+  padding-top: 40px;
+}
+md-sidenav{
+width: 400px;
+height: 100vh;
+}
+
+ol {
+  color: #ccc;
+  list-style-type: none;
+}
+
+ol li {
+  position: relative;
+  font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #ccc;
+}
+
+li p {
+  font: 14px/1.5 Helvetica, sans-serif;
+  padding-left: 60px;
+  padding-right: 40px;
+  padding-top: 10px;
+  color: #555;
+}
+
+.numList span {
+  position: absolute;
+  left: 5px;
+}
+.numList li{
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
+  min-height: 70px;
+}
+.list-secondary {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.list-secondary-first {
+  position: absolute;
+  right: 0;
+  top: 10px;
+}
+
+.sideList li{
+  font: 12px/1.5 Helvetica, sans-serif;
+  padding: 10px;
+  color: #555;
+  font-weight: bold;
+}
+.li-active{
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
+}
+
+ol li:hover{
+   background-color: #eee;
+   cursor: pointer;
+}
+
+._md-subheader-wrapper:not(.md-sticky-no-effect) .md-subheader {
+    margin: 0;
+    margin-left: -40px;
+    margin-top: -10px;
+}

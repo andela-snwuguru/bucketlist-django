@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<md-bottom-sheet class="md-grid bottomSheets" layout="column" ng-cloak>
+  <div>
+    <md-list flex layout="row" layout-align="center center">
+
+      <md-list-item>
+        <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+        <md-icon md-svg-src="{% static 'svg/facebook.svg' %}"></md-icon>
+          <div class="md-grid-text"> Facebook</div>
+        </md-button>
+      </md-list-item>
+
+      <md-list-item>
+        <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+        <md-icon md-svg-src="{% static 'svg/twitter.svg' %}"></md-icon>
+          <div class="md-grid-text"> Twitter</div>
+        </md-button>
+      </md-list-item>
+
+      <md-list-item>
+        <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+        <md-icon md-svg-src="{% static 'svg/google.svg' %}"></md-icon>
+          <div class="md-grid-text"> Google</div>
+        </md-button>
+      </md-list-item>
+    </md-list>
+  </div>
+</md-bottom-sheet>

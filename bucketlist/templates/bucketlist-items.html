@@ -1,0 +1,77 @@
+{% load staticfiles %}
+<div class="row">
+          <md-button class="md-fab md-raised md-mini" ng-click="toggleLeft()" hide-gt-md>
+              <md-icon md-svg-icon="{% static 'svg/menu.svg' %}"></md-icon>
+          </md-button>
+
+          <md-button
+          aria-label="New Bucket List Item"
+          class="md-fab md-raised md-mini right"
+          ng-click="toggleRight()"
+          ng-hide="isOpenRight()">
+            <md-icon md-svg-src="{% static 'svg/add.svg' %}" aria-label="New Bucket List Item"></md-icon>
+          </md-button>
+        </div>
+        <div class="padding">
+          <md-subheader class="md-primary"><h3>2015 Agenda</h3></md-subheader>
+          <md-divider></md-divider>
+          <ol class='numList'>
+            <li>
+              <span style="margin-top:10px;">
+                <md-checkbox></md-checkbox>
+              </span>
+              <p> Spend 2 years in UK </p>
+
+                <md-button class="md-icon-button list-secondary" style="margin-top:-10px; padding:0" ng-click="clickTest()">
+                  <md-icon md-menu-origin md-svg-icon="{% static 'svg/pencil.svg' %}"></md-icon>
+                </md-button>
+
+                <md-button class="md-icon-button list-secondary-first" style="margin-top:-10px; padding:0" ng-click="clickTest()">
+                  <md-icon md-menu-origin md-svg-icon="{% static 'svg/delete.svg' %}"></md-icon>
+                </md-button>
+            </li>
+            <li>
+              <span style="margin-top:10px;">
+                <md-checkbox></md-checkbox>
+              </span>
+              <p> Spend 4 years in UK </p>
+
+                <md-button class="md-icon-button list-secondary" style="margin-top:-10px; padding:0" ng-click="clickTest()">
+                  <md-icon md-menu-origin md-svg-icon="{% static 'svg/pencil.svg' %}"></md-icon>
+                </md-button>
+
+                <md-button class="md-icon-button list-secondary-first" style="margin-top:-10px; padding:0" ng-click="clickTest()">
+                  <md-icon md-menu-origin md-svg-icon="{% static 'svg/delete.svg' %}"></md-icon>
+                </md-button>
+            </li>
+            <li>
+              <span style="margin-top:10px;">
+                <md-checkbox></md-checkbox>
+              </span>
+              <p> Spend 2 years in UK </p>
+
+                <md-button class="md-icon-button list-secondary" style="margin-top:-10px; padding:0" ng-click="clickTest()">
+                  <md-icon md-menu-origin md-svg-icon="{% static 'svg/pencil.svg' %}"></md-icon>
+                </md-button>
+
+                <md-button class="md-icon-button list-secondary-first" style="margin-top:-10px; padding:0" ng-click="clickTest()">
+                  <md-icon md-menu-origin md-svg-icon="{% static 'svg/delete.svg' %}"></md-icon>
+                </md-button>
+            </li>
+            <li>
+              <span style="margin-top:10px;">
+                <md-checkbox></md-checkbox>
+              </span>
+              <p> Spend 4 years in UK </p>
+
+                <md-button class="md-icon-button list-secondary" style="margin-top:-10px; padding:0" ng-click="clickTest()">
+                  <md-icon md-menu-origin md-svg-icon="{% static 'svg/pencil.svg' %}"></md-icon>
+                </md-button>
+
+                <md-button class="md-icon-button list-secondary-first" style="margin-top:-10px; padding:0" ng-click="clickTest()">
+                  <md-icon md-menu-origin md-svg-icon="{% static 'svg/delete.svg' %}"></md-icon>
+                </md-button>
+            </li>
+
+          </ol>
+        </div>
