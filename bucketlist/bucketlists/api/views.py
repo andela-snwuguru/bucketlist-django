@@ -1,6 +1,8 @@
+from django.contrib.auth.models import User
 from rest_framework.generics import (
   ListCreateAPIView,
   RetrieveUpdateDestroyAPIView,
+   CreateAPIView,
 )
 from bucketlists.models import *
 from .serializers import *
@@ -18,6 +20,13 @@ from rest_framework.permissions import (
   IsAuthenticatedOrReadOnly,
 )
 from .permissions import IsOwnerOrReadOnly
+
+
+class RegistrationApiView(CreateAPIView):
+  queryset = User.objects.all()
+  serializer_class = UserSerializer
+  permission_classes = [AllowAny]
+
 
 class BucketlistListCreateApiView(ListCreateAPIView):
   """
@@ -48,6 +57,7 @@ class BucketlistListCreateApiView(ListCreateAPIView):
   # before create
   def perform_create(self, serializer):
     serializer.save(user=self.request.user)
+
 
 class BucketlistRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
   """
