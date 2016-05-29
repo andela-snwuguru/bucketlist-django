@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
    url(r'^', include('bucketlists.urls', namespace='bucketlists')),
+   url(r'^api/v1/bucketlists/', include('bucketlists.api.urls', namespace='bucketlists-api')),
 ]
