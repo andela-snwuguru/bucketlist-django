@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block content %}
 <div ng-controller="AppCtrl" ng-cloak>
- <div layout="row">
+ <div layout-gt-xs="row" layout-xs="column">
   <div flex>
    <md-toolbar>
         <div class="md-toolbar-tools">
@@ -16,7 +16,7 @@
         </div>
    </md-toolbar>
 
-   <div>
+   <div hide-xs>
       <img src="{% static 'images/Your-bucket-list.jpg' %}" style="width:100%" />
    </div>
   </div>
