@@ -1,8 +1,10 @@
+from django.contrib.auth.models import User
 from rest_framework.serializers import (
     ModelSerializer,
     HyperlinkedIdentityField,
     SerializerMethodField,
   )
+
 from bucketlists.models import *
 
 
@@ -42,3 +44,15 @@ class BucketListItemSerializer(ModelSerializer):
 
   def get_bucketlist(self, obj):
     return obj.bucketlist.name
+
+class UserSerializer(ModelSerializer):
+
+  class Meta:
+    model = User
+    fields = [
+      'id',
+      'username',
+      'email',
+      'first_name',
+      'last_name',
+    ]
