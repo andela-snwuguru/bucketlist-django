@@ -6,4 +6,4 @@ def index(request):
   context = {
   'title':'welcome'
   }
-  return render(request, 'home.html', context)
+  return render(request, 'dashboard.html', context)
