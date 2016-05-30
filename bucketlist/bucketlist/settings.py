@@ -23,24 +23,32 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@f*bztzc-o%4zoas@34fwdss)^+98v+b96ea_w!(+uitaw&#_e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-import dj_database_url
-
-DATABASES = {
-    'default': dj_database_url.config()
-}
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
 
-DEBUG = False
 
 try:
     from .development import *
 except ImportError:
-    pass
+    from .production import *
 
 # Application definition
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+}
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH':True,
+    'JWT_AUTH_HEADER_PREFIX': 'DBL',
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
