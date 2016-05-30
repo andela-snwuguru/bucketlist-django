@@ -1,17 +1,17 @@
 {% load staticfiles %}
-<md-menu>
+<md-menu ng-controller="AuthCtrl">
   <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
     <md-icon md-menu-origin md-svg-icon="{% static 'svg/user.svg' %}"></md-icon>
   </md-button>
   <md-menu-content width="4">
      <md-menu-item>
-      <p>Sunday Goodman</p>
+      <p>Logged as: {{ user.username }}</p>
     </md-menu-item>
     <md-menu-divider></md-menu-divider>
    <md-menu-item>
-      <md-button ng-click="logOut()">
+      <md-button ng-click="logout()">
       <md-icon md-menu-origin md-svg-icon="{% static 'svg/logout.svg' %}"></md-icon>
-         Logout
+        Logout
       </md-button>
     </md-menu-item>
     <md-menu-divider></md-menu-divider>
