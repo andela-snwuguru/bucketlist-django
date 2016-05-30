@@ -1,11 +1,20 @@
 angular.module('BucketlistControllers', [])
-  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, $mdBottomSheet) {
+  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, $mdBottomSheet, $mdToast) {
       $scope.bucketlists = [
         'test 1',
         'test 2',
         'test 3',
         'test 4'
       ];
+
+      $scope.showToast = function(message) {
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent(message)
+            .position('top right')
+            .hideDelay(5000)
+        );
+      };
       $scope.openMenu = function($mdOpenMenu, ev) {
         $mdOpenMenu(ev);
       };
@@ -60,7 +69,7 @@ angular.module('BucketlistControllers', [])
       $scope.showSocialButtons = function() {
         $mdBottomSheet.show({
           templateUrl: 'social-buttons.html',
-          controller: 'SocialButtonsCtrl',
+          controller: 'AuthCtrl',
           clickOutsideToClose: true
         });
       };
@@ -68,7 +77,7 @@ angular.module('BucketlistControllers', [])
       $scope.showRegisterForm = function() {
         $mdBottomSheet.show({
           templateUrl: 'register.html',
-          controller: 'RegisterCtrl',
+          controller: 'AuthCtrl',
           clickOutsideToClose: true
         });
       };
@@ -78,16 +87,63 @@ angular.module('BucketlistControllers', [])
       };
     })
 
-  .controller('SocialButtonsCtrl', function($scope, $mdBottomSheet) {
+  .controller('AuthCtrl', function($scope, $mdToast, $location, CONFIG, HttpService) {
+    $scope.user = {}
+
+    $scope.login = function(){
+      $scope.toast("Authorization in progress");
+      HttpService.post('/auth/login/',$scope.user,function(response){
+        if(response.data){
+          if(response.data.login){
+            document.location.href = '/'
+          }
+        }
+        $scope.toast('Unable to complete login process')
+      },function(response){
+        $scope.toast('Incorrect User credential')
+      })
+    }
+
+    $scope.logout = function(){
+      document.location.href = '/logout'
+    }
+
+    $scope.toast = function(message){
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent(message)
+            .position('top right')
+            .hideDelay(5000)
+        );
+    }
+
+    $scope.newAccount = function(){
+      if($scope.user.password != $scope.user.confirmPassword){
+        $scope.toast("Password mismatch");
+        return false
+      }
+      $scope.toast("Creating account...");
+      HttpService.post('/auth/register/',$scope.user,function(response){
+        if(response.data){
+          $scope.login();
+          return false
+        }
+        $scope.toast('Unable to complete registration')
+      },function(response){
+        if(response.data && response.data.username){
+          $scope.toast(response.data.username[0])
+        }else{
+          $scope.toast('Unable to complete registration')
+        }
+      })
+
+    };
 
     $scope.listItemClick = function() {
       $mdBottomSheet.hide();
     };
   })
 
-  .controller('RegisterCtrl', function($scope, $mdBottomSheet) {
-
-  })
   .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
 
     $scope.close = function () {

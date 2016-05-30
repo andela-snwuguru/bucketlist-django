@@ -48,6 +48,8 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH':True,
     'JWT_AUTH_HEADER_PREFIX': 'DBL',
+    'JWT_RESPONSE_PAYLOAD_HANDLER':'bucketlists.api.helper.jwt_response_payload_handler'
+
 }
 
 INSTALLED_APPS = [

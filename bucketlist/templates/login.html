@@ -1,23 +1,23 @@
 {% load staticfiles %}
- <md-card>
+ <md-card ng-controller="AuthCtrl">
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">User Login</span>
           </md-card-title-text>
         </md-card-title>
         <md-card-content>
+          <form ng-submit="login()">{% csrf_token %}
+            <md-input-container class="md-block">
+              <md-icon md-svg-src="{% static 'svg/avatar.svg' %}" class="username"></md-icon>
+              <input ng-model="user.username" type="text" placeholder="Username (required)" ng-required="true">
+            </md-input-container>
 
-          <md-input-container class="md-block">
-            <md-icon md-svg-src="{% static 'svg/avatar.svg' %}" class="username"></md-icon>
-            <input ng-model="user.username" type="text" placeholder="Username (required)" ng-required="true">
-          </md-input-container>
-
-          <md-input-container class="md-block">
-            <md-icon md-svg-src="{% static 'svg/padlock.svg' %}" class="password"></md-icon>
-            <input ng-model="user.password" type="password" placeholder="Password (required)" ng-required="true">
-          </md-input-container>
-          <md-button class="md-raised md-primary right">Login</md-button>
-
+            <md-input-container class="md-block">
+              <md-icon md-svg-src="{% static 'svg/padlock.svg' %}" class="password"></md-icon>
+              <input ng-model="user.password" type="password" placeholder="Password (required)" ng-required="true">
+            </md-input-container>
+            <md-button class="md-raised md-primary right" type="submit">Login</md-button>
+          </form>
         </md-card-content>
         <md-card-actions layout="row" layout-align="start">
         <p>
