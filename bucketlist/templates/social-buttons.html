@@ -4,24 +4,24 @@
     <md-list flex layout="row" layout-align="center center">
 
       <md-list-item>
-        <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+        <a href="{% url 'social:begin' backend='facebook' %}?next={{ request.path }}" class="md-grid-item-content">
         <md-icon md-svg-src="{% static 'svg/facebook.svg' %}"></md-icon>
           <div class="md-grid-text"> Facebook</div>
-        </md-button>
+        </a>
       </md-list-item>
 
       <md-list-item>
-        <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+        <a href="{% url 'social:begin' backend='twitter' %}?next={{ request.path }}" class="md-grid-item-content">
         <md-icon md-svg-src="{% static 'svg/twitter.svg' %}"></md-icon>
           <div class="md-grid-text"> Twitter</div>
-        </md-button>
+        </a>
       </md-list-item>
 
       <md-list-item>
-        <md-button class="md-grid-item-content" ng-click="listItemClick($index)">
+        <a href="{% url 'social:begin' backend='google-oauth2' %}?next={{ request.path }}" class="md-grid-item-content">
         <md-icon md-svg-src="{% static 'svg/google.svg' %}"></md-icon>
           <div class="md-grid-text"> Google</div>
-        </md-button>
+        </a>
       </md-list-item>
     </md-list>
   </div>

@@ -27,7 +27,15 @@ SECRET_KEY = '@f*bztzc-o%4zoas@34fwdss)^+98v+b96ea_w!(+uitaw&#_e'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
-
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '399435236867-n6li9g8tscnu0gi6ej1uc9u19hivgech.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'ZpbO0yeMuxfWDRBMefV4cpGK'
+SOCIAL_AUTH_FACEBOOK_KEY = '135058293567210'
+SOCIAL_AUTH_FACEBOOK_SECRET = '3794c7d0b837e76b9e4f1ebc82c966ba'
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_TWITTER_KEY = 'TvlbHdt1Bx5DqpTA8K39tsqsw'
+SOCIAL_AUTH_TWITTER_SECRET = '7oxmnJp9dWphmpTAnUVxEzE8uhmWDQaxprAYx8dbKwb1gzveie'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+SOCIAL_AUTH_LOGIN_URL = '/'
 
 try:
     from .development import *
@@ -61,6 +69,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bucketlists',
     'rest_framework',
+    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -73,6 +82,14 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'social.backends.google.GoogleOAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 ROOT_URLCONF = 'bucketlist.urls'
 
@@ -87,6 +104,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
