@@ -16,10 +16,6 @@ angular.module('bucketlist.controllers', [])
             $mdOpenMenu(ev);
         };
 
-        $scope.clickTest = function() {
-            alert(1)
-        }
-
         function buildToggler(navID) {
             return function() {
                 $mdSidenav(navID)
@@ -106,7 +102,6 @@ angular.module('bucketlist.controllers', [])
             bucketlist_id = $scope.bucketlists[index].id
             $scope.activeId = bucketlist_id;
             Util.broadcast(bucketlist_id, $scope.bucketlists[index].name)
-            $scope.toggleLeft();
         };
 
         $scope.getNextPage = function() {
@@ -141,7 +136,7 @@ angular.module('bucketlist.controllers', [])
 
         $scope.getBucketlist('/bucketlists/');
     })
-    .controller('BucketlistItemCtrl', function($scope, BucketlistItemService, CONFIG) {
+    .controller('BucketlistItemCtrl', function($scope, $timeout, BucketlistItemService, CONFIG) {
         $scope.items = [];
         $scope.item = {};
         $scope.next = false;
@@ -155,6 +150,7 @@ angular.module('bucketlist.controllers', [])
         $scope.getItems = function(url) {
             BucketlistItemService.get(url, $scope);
         };
+
         $scope.$on(CONFIG.loadItemsEvent, function(event, data) {
             $scope.bucketlist_name = data.bucketlist_name;
             $scope.bucketlist_id = data.bucketlist_id;
@@ -171,7 +167,15 @@ angular.module('bucketlist.controllers', [])
         };
 
         $scope.saveItem = function() {
-            BucketlistItemService.save($scope);
+            BucketlistItemService.save($scope, true);
+        };
+
+        $scope.checkDone = function(index) {
+            $scope.item = $scope.items[index];
+            $timeout(function() {
+                BucketlistItemService.save($scope);
+            }, 200);
+
         };
 
         $scope.edit = function(index) {

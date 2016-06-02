@@ -16,15 +16,13 @@
           <md-subheader class="md-primary"><h3 class="caps">{[{ bucketlist_name }]}</h3></md-subheader>
           <md-divider></md-divider>
           <ol class='numList'>
-            <li ng-repeat="item in items">
+            <li ng-repeat="item in items" class="{[{ !item.done ? 'li-active' : '' }]}">
               <span style="margin-top:10px;">
-                <md-checkbox  aria-label="Done status" ></md-checkbox>
+                <md-checkbox  aria-label="Done status" ng-click="checkDone($index)" ng-model="item.done"></md-checkbox>
               </span>
               <p> {[{ item.task }]}</p>
               {% include 'bucketlist-option-menu.html' %}
             </li>
-
-
 
           </ol>
           <small ng-show="!items.length">No bucket list item found</small>

@@ -69,7 +69,7 @@ angular.module('bucketlist.services', [])
     return {
         get: function(url, $scope) {
             HttpService.get(url, function(response) {
-                if (response.data.results) {
+                if (response.data.results && response.data.results.length) {
                     $scope.activeId = response.data.results[0].id;
                     $scope.total = response.data.count;
                     $scope.bucketlists = response.data.results;
@@ -124,7 +124,7 @@ angular.module('bucketlist.services', [])
                 Util.logout(response);
             });
         },
-        save: function($scope) {
+        save: function($scope, toggle) {
             var func = 'post';
             var path = '/bucketlists/' + $scope.bucketlist_id + '/items/';
             if ($scope.item.date_created) {
@@ -133,7 +133,9 @@ angular.module('bucketlist.services', [])
             }
             HttpService[func](path, $scope.item, function(response) {
                 $scope.item = {};
-                $scope.toggleRight();
+                if(toggle){
+                  $scope.toggleRight();
+                }
                 Util.broadcast($scope.bucketlist_id, $scope.bucketlist_name)
             }, function(response) {
                 Util.logout(response);

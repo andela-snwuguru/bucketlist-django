@@ -38,6 +38,7 @@ class BucketListItemSerializer(ModelSerializer):
       'id',
       'bucketlist',
       'task',
+      'done',
       'date_modified',
       'date_created',
     ]
