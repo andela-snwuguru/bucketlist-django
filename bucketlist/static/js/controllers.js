@@ -1,170 +1,180 @@
 angular.module('BucketlistControllers', [])
-  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, $mdBottomSheet, $mdToast) {
-      $scope.bucketlists = [
-        'test 1',
-        'test 2',
-        'test 3',
-        'test 4'
-      ];
+    .controller('AppCtrl', function($scope, $timeout, $mdSidenav, $log, $mdBottomSheet, $mdToast) {
+        $scope.toggleLeft = buildToggler('left');
+        $scope.toggleRight = buildToggler('right');
 
-      $scope.showToast = function(message) {
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent(message)
-            .position('top right')
-            .hideDelay(5000)
-        );
-      };
-      $scope.openMenu = function($mdOpenMenu, ev) {
-        $mdOpenMenu(ev);
-      };
-
-      $scope.clickTest = function(){
-        alert(1)
-      }
-      $scope.toggleLeft = buildDelayedToggler('left');
-      $scope.toggleRight = buildToggler('right');
-      $scope.isOpenRight = function(){
-        return $mdSidenav('right').isOpen();
-      };
-      /**
-       * Supplies a function that will continue to operate until the
-       * time is up.
-       */
-      function debounce(func, wait, context) {
-        var timer;
-        return function debounced() {
-          var context = $scope,
-              args = Array.prototype.slice.call(arguments);
-          $timeout.cancel(timer);
-          timer = $timeout(function() {
-            timer = undefined;
-            func.apply(context, args);
-          }, wait || 10);
+        $scope.showToast = function(message) {
+            $mdToast.show(
+                $mdToast.simple()
+                .textContent(message)
+                .position('top right')
+                .hideDelay(5000)
+            );
         };
-      }
-      /**
-       * Build handler to open/close a SideNav; when animation finishes
-       * report completion in console
-       */
-      function buildDelayedToggler(navID) {
-        return debounce(function() {
-          $mdSidenav(navID)
-            .toggle()
-            .then(function () {
-              $log.debug("toggle " + navID + " is done");
-            });
-        }, 200);
-      }
-      function buildToggler(navID) {
 
-        return function() {
-          $mdSidenav(navID)
-            .toggle()
-            .then(function () {
-              $log.debug("toggle " + navID + " is done");
-            });
+        $scope.openMenu = function($mdOpenMenu, ev) {
+            $mdOpenMenu(ev);
+        };
+
+        $scope.clickTest = function() {
+            alert(1)
         }
-      }
-      $scope.showSocialButtons = function() {
-        $mdBottomSheet.show({
-          templateUrl: 'social-buttons.html',
-          controller: 'AuthCtrl',
-          clickOutsideToClose: true
-        });
-      };
 
-      $scope.showRegisterForm = function() {
-        $mdBottomSheet.show({
-          templateUrl: 'register.html',
-          controller: 'AuthCtrl',
-          clickOutsideToClose: true
-        });
-      };
+        function buildToggler(navID) {
+            return function() {
+                $mdSidenav(navID)
+                    .toggle();
+            }
+        }
 
-      $scope.sideClick = function(){
-        alert(1);
-      };
+        $scope.showSocialButtons = function() {
+            $mdBottomSheet.show({
+                templateUrl: 'social-buttons.html',
+                controller: 'AuthCtrl',
+                clickOutsideToClose: true
+            });
+        };
+
+        $scope.showRegisterForm = function() {
+            $mdBottomSheet.show({
+                templateUrl: 'register.html',
+                controller: 'AuthCtrl',
+                clickOutsideToClose: true
+            });
+        };
+
+        $scope.sideClick = function() {
+            alert(1);
+        };
     })
 
-  .controller('AuthCtrl', function($scope, $mdToast, $location, CONFIG, HttpService) {
+.controller('AuthCtrl', function($scope, $mdToast, $location, CONFIG, HttpService, Util, StorageService) {
     $scope.user = {}
 
-    $scope.login = function(){
-      $scope.toast("Authorization in progress");
-      HttpService.post('/auth/login/',$scope.user,function(response){
-        if(response.data){
-          if(response.data.login){
-            document.location.href = '/'
-          }
-        }
-        $scope.toast('Unable to complete login process')
-      },function(response){
-        $scope.toast('Incorrect User credential')
-      })
+    $scope.login = function() {
+        Util.toast("Authorization in progress");
+        HttpService.post('/auth/login/', $scope.user, function(response) {
+            if (response.data) {
+                if (response.data.login) {
+                    StorageService.setItem('token', response.data.token)
+                    document.location.href = '/'
+                }
+            }
+            Util.toast('Unable to complete login process')
+        }, function(response) {
+            Util.toast('Incorrect User credential')
+        })
     }
 
-    $scope.logout = function(){
-      document.location.href = '/logout'
+    $scope.logout = function() {
+        Util.logout();
     }
 
-    $scope.toast = function(message){
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent(message)
-            .position('top right')
-            .hideDelay(5000)
-        );
-    }
-
-    $scope.newAccount = function(){
-      if($scope.user.password != $scope.user.confirmPassword){
-        $scope.toast("Password mismatch");
-        return false
-      }
-      $scope.toast("Creating account...");
-      HttpService.post('/auth/register/',$scope.user,function(response){
-        if(response.data){
-          $scope.login();
-          return false
+    $scope.newAccount = function() {
+        if ($scope.user.password != $scope.user.confirmPassword) {
+            Util.toast("Password mismatch");
+            return false
         }
-        $scope.toast('Unable to complete registration')
-      },function(response){
-        if(response.data && response.data.username){
-          $scope.toast(response.data.username[0])
-        }else{
-          $scope.toast('Unable to complete registration')
-        }
-      })
-
-    };
-
-    $scope.listItemClick = function() {
-      $mdBottomSheet.hide();
-    };
-  })
-
-  .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-
-    $scope.close = function () {
-      $mdSidenav('left').close()
-        .then(function () {
-          $log.debug("close LEFT is done");
+        Util.toast("Creating account...");
+        HttpService.post('/auth/register/', $scope.user, function(response) {
+            if (response.data) {
+                $scope.login();
+                return false
+            }
+            Util.toast('Unable to complete registration');
+        }, function(response) {
+            if (response.data && response.data.username) {
+                Util.toast(response.data.username[0])
+            } else {
+                Util.toast('Unable to complete registration')
+            }
         });
-    };
 
-    $scope.newBucketlist = false;
-    $scope.bucketListIcon = 'cancel';
-
-    $scope.toggleBucketListForm = function(){
-      $scope.newBucketlist = !$scope.newBucketlist;
-    }
-  })
-  .controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-    $scope.close = function () {
-      $mdSidenav('right').close()
-        .then(function () {
-          $log.debug("close RIGHT is done");
-        });
     };
-  });
+})
+
+.controller('BucketlistCtrl', function($scope, HttpService, Util) {
+        $scope.bucketlists = [];
+        $scope.bucketlist = {};
+        $scope.next = false;
+        $scope.previous = false;
+        $scope.activeId = 0;
+        $scope.totalBucketlist = 0;
+
+
+        $scope.showBucketListItems = function(index) {
+            bucketlist_id = $scope.bucketlists[index].id
+            $scope.activeId = bucketlist_id;
+        };
+
+        $scope.getNextPage = function() {
+            $scope.getBucketlist($scope.next);
+        };
+
+        $scope.getPreviousPage = function() {
+            $scope.getBucketlist($scope.previous);
+        };
+
+        $scope.editBucketlist = function(index) {
+            $scope.bucketlist = $scope.bucketlists[index];
+            $scope.toggleBucketListForm();
+        };
+
+        $scope.deleteBucketlist = function(index) {
+            bucketlist_id = $scope.bucketlists[index].id;
+            HttpService.delete('/bucketlists/' + bucketlist_id, function(response) {
+                if (response.status === 204) {
+                    $scope.getBucketlist('/bucketlists/');
+                }
+            }, function(response) {
+                Util.logout(response);
+            });
+        };
+
+        $scope.getBucketlist = function(url) {
+            HttpService.get(url, function(response) {
+                if (response.data.results) {
+                    $scope.activeId = response.data.results[0].id;
+                    $scope.totalBucketlist = response.data.count;
+                    $scope.bucketlists = response.data.results;
+                    $scope.next = response.data.next;
+                    $scope.previous = response.data.previous;
+                    Util.refreshToken();
+                }
+            }, function(response) {
+                Util.logout(response);
+            });
+        };
+
+        $scope.saveBucketlist = function() {
+            var func = 'post';
+            var path = '/bucketlists/';
+            if ($scope.bucketlist.date_created) {
+                func = 'update'
+                path += $scope.bucketlist.id + '/';
+            }
+
+            HttpService[func](path, $scope.bucketlist, function(response) {
+                if (response.status === 200) {
+                    $scope.bucketlist = {};
+                    $scope.toggleBucketListForm();
+                    $scope.getBucketlist('/bucketlists/');
+                }
+            }, function(response) {
+                Util.logout(response);
+            });
+        };
+
+        $scope.toggleBucketListForm = function() {
+            $scope.newBucketlist = !$scope.newBucketlist;
+        }
+        $scope.getBucketlist('/bucketlists/');
+    })
+    .controller('RightCtrl', function($scope, $timeout, $mdSidenav, $log) {
+        $scope.close = function() {
+            $mdSidenav('right').close()
+                .then(function() {
+                    $log.debug("close RIGHT is done");
+                });
+        };
+    });

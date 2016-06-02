@@ -1,10 +1,6 @@
-<md-toolbar class="md-theme-light">
-        <h1 class="md-toolbar-tools">New Bucket List</h1>
-      </md-toolbar>
-      <md-content  layout-padding>
-        <md-input-container class="md-block">
-          <input ng-model="bucket.name" type="text" placeholder="Name (required)" ng-required="true">
-        </md-input-container>
-        <md-button class="md-raised md-primary right"  ng-click="close()">Submit</md-button>
-
-      </md-content>
+<form ng-submit="saveBucketlist()">
+    <md-input-container class="md-block" ng-show="newBucketlist">
+        <input ng-model="bucketlist.name" type="text" placeholder="Name (required)" ng-required="true">
+        <md-button aria-label="Save Bucketlist" class="md-raised md-primary right" type="submit">{[{ bucketlist.date_created ? 'Update' : 'Create' }]}</md-button>
+    </md-input-container>
+</form>

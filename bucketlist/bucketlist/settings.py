@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-
+import datetime
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -56,7 +56,8 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH':True,
     'JWT_AUTH_HEADER_PREFIX': 'DBL',
-    'JWT_RESPONSE_PAYLOAD_HANDLER':'bucketlists.api.helper.jwt_response_payload_handler'
+    'JWT_RESPONSE_PAYLOAD_HANDLER':'bucketlists.api.helper.jwt_response_payload_handler',
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=1200),
 
 }
 
