@@ -20,14 +20,12 @@
       </md-toolbar>
 
       <md-content ng-controller="BucketlistCtrl">
-
          <section>
           {% include 'bucketlists.html' %}
         </section>
-
       </md-content>
     </md-sidenav>
-    <md-content flex>
+    <md-content flex ng-controller="BucketlistItemCtrl">
       <div layout="column" layout-fill layout-align="top left">
       <md-toolbar hide-gt-md>
 
@@ -46,16 +44,18 @@
 
       </div>
       <div flex></div>
-    </md-content>
-    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
-      <section  ng-controller="RightCtrl">
+
+      <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+      <section>
         <div>
           {% include 'new-bucketlist-item.html' %}
         </div>
-
       </section>
 
     </md-sidenav>
+
+    </md-content>
+
   </section>
 
   {% endblock content %}
