@@ -1,34 +1,28 @@
 {% load staticfiles %}
-
 <md-subheader class="md-primary">
-  <h3>My Bucket Lists
+    <h3>My Bucket Lists
     <md-button aria-label="{[{ newBucketlist ? 'New Bucket List' : 'Cancel' }]}" ng-click="toggleBucketListForm()" class="md-icon-button right">
       <md-icon md-svg-icon="{% static 'svg/add.svg' %}" ng-show="!newBucketlist"></md-icon>
       <md-icon md-svg-icon="{% static 'svg/cancel.svg' %}" ng-show="newBucketlist"></md-icon>
     </md-button>
   </h3>
-<md-input-container class="md-block" ng-show="newBucketlist">
-  <input ng-model="bucket.name" type="text" placeholder="Name (required)" ng-required="true">
-  <md-button class="md-raised md-primary right"  ng-click="close()">Submit</md-button>
-</md-input-container>
+    {% include 'new-bucketlist.html' %}
 </md-subheader>
-
 <md-divider></md-divider>
+
 <ol class='sideList'>
-  <li  ng-click="showBucketListItems($index)" class="{[{  activeId === bucket.id ? 'li-active' : '' }]}" ng-repeat="bucket in bucketlists">
-    <span > {[{ bucket.name}]} <br/> <small>{[{ bucket.date_created.split('T')[0] }]}</small></span>
-    {% include 'bucketlist-option-menu.html' %}
-  </li>
-
-
+    <li ng-click="showBucketListItems($index)" class="{[{  activeId === bucket.id ? 'li-active' : '' }]}" ng-repeat="bucket in bucketlists">
+        <span> {[{ bucket.name}]} <br/> <small>{[{ bucket.date_created.split('T')[0] }]}</small></span> {% include 'bucketlist-option-menu.html' %}
+    </li>
 </ol>
 <md-divider></md-divider>
 <div style="margin-top:10px;">
-<md-button aria-label="Previous" class="md-icon-button" style="margin-top:-10px; padding:0" ng-show="previous" ng-click="getPreviousPage()">
-  <md-icon md-menu-origin md-svg-icon="{% static 'svg/prev.svg' %}"></md-icon>
-</md-button>
+    <md-button aria-label="Previous" class="md-icon-button" style="margin-top:-10px; padding:0" ng-show="previous" ng-click="getPreviousPage()">
+        <md-icon md-menu-origin md-svg-icon="{% static 'svg/prev.svg' %}"></md-icon>
+    </md-button>
 
-<md-button aria-label="Next" class="md-icon-button right" style="margin-top:-10px; padding:0" ng-show="next" ng-click="getNextPage()">
-  <md-icon md-menu-origin md-svg-icon="{% static 'svg/next.svg' %}"></md-icon>
-</md-button>
+    <md-button aria-label="Next" class="md-icon-button right" style="margin-top:-10px; padding:0" ng-show="next" ng-click="getNextPage()">
+        <md-icon md-menu-origin md-svg-icon="{% static 'svg/next.svg' %}"></md-icon>
+    </md-button>
+    <span class="right"><small style="margin-right:20px;">{[{ totalBucketlist }]} Bucket List</small></span>
 </div>
