@@ -17,6 +17,7 @@ class BucketListSerializer(ModelSerializer):
   class Meta:
     model = BucketList
     fields = [
+      'id',
       'url',
       'user',
       'name',
@@ -34,7 +35,6 @@ class BucketListItemSerializer(ModelSerializer):
   class Meta:
     model = BucketListItem
     fields = [
-     # 'url',
       'id',
       'bucketlist',
       'task',

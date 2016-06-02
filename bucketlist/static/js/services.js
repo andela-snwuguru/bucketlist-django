@@ -24,9 +24,10 @@ angular.module('BucketlistServices', [])
 .factory('HttpService', function ($http, CONFIG) {
   return {
     send:function(endpoint, method, data, successCallback, errorCallback){
+      var url = endpoint.indexOf('http') == 0 ? endpoint : CONFIG.apiUrl+endpoint;
       $http({
         method: method,
-        url: CONFIG.apiUrl+endpoint,
+        url: url,
         data:data
       }).then(successCallback, errorCallback);
     },
@@ -46,3 +47,16 @@ angular.module('BucketlistServices', [])
   };
 
 })
+.factory('Util', function ($http, $mdToast, CONFIG) {
+  return {
+   toast:function(message) {
+        $mdToast.show(
+            $mdToast.simple()
+            .textContent(message)
+            .position('top right')
+            .hideDelay(5000)
+        );
+    }
+  };
+
+});
