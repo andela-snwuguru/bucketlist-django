@@ -1,6 +1,8 @@
 <form ng-submit="saveBucketlist()">
     <md-input-container class="md-block" ng-show="newBucketlist">
         <input ng-model="bucketlist.name" type="text" placeholder="Name (required)" ng-required="true">
-        <md-button aria-label="Save Bucketlist" class="md-raised md-primary right" type="submit">{[{ bucketlist.date_created ? 'Update' : 'Create' }]}</md-button>
+        <md-button aria-label="Save Bucketlist" class="md-raised md-primary right" type="submit">
+            {[{ bucketlist.date_created ? 'Update' : 'Create' }]}
+        </md-button>
     </md-input-container>
 </form>

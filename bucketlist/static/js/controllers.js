@@ -1,4 +1,4 @@
-angular.module('BucketlistControllers', [])
+angular.module('bucketlist.controllers', [])
     .controller('AppCtrl', function($scope, $timeout, $mdSidenav, $log, $mdBottomSheet, $mdToast) {
         $scope.toggleLeft = buildToggler('left');
         $scope.toggleRight = buildToggler('right');
@@ -93,18 +93,20 @@ angular.module('BucketlistControllers', [])
     };
 })
 
-.controller('BucketlistCtrl', function($scope, HttpService, Util) {
+.controller('BucketlistCtrl', function($scope, BucketlistService, $rootScope, CONFIG) {
         $scope.bucketlists = [];
         $scope.bucketlist = {};
         $scope.next = false;
         $scope.previous = false;
         $scope.activeId = 0;
-        $scope.totalBucketlist = 0;
-
+        $scope.total = 0;
+        $scope.footer_text = 'Bucket list'
 
         $scope.showBucketListItems = function(index) {
             bucketlist_id = $scope.bucketlists[index].id
             $scope.activeId = bucketlist_id;
+            Util.broadcast(bucketlist_id, $scope.bucketlists[index].name)
+            $scope.toggleLeft();
         };
 
         $scope.getNextPage = function() {
@@ -115,66 +117,73 @@ angular.module('BucketlistControllers', [])
             $scope.getBucketlist($scope.previous);
         };
 
-        $scope.editBucketlist = function(index) {
+        $scope.edit = function(index) {
             $scope.bucketlist = $scope.bucketlists[index];
             $scope.toggleBucketListForm();
         };
 
-        $scope.deleteBucketlist = function(index) {
+        $scope.delete = function(index) {
             bucketlist_id = $scope.bucketlists[index].id;
-            HttpService.delete('/bucketlists/' + bucketlist_id, function(response) {
-                if (response.status === 204) {
-                    $scope.getBucketlist('/bucketlists/');
-                }
-            }, function(response) {
-                Util.logout(response);
-            });
+            BucketlistService.delete(bucketlist_id, $scope)
         };
 
         $scope.getBucketlist = function(url) {
-            HttpService.get(url, function(response) {
-                if (response.data.results) {
-                    $scope.activeId = response.data.results[0].id;
-                    $scope.totalBucketlist = response.data.count;
-                    $scope.bucketlists = response.data.results;
-                    $scope.next = response.data.next;
-                    $scope.previous = response.data.previous;
-                    Util.refreshToken();
-                }
-            }, function(response) {
-                Util.logout(response);
-            });
+            BucketlistService.get(url, $scope);
         };
 
         $scope.saveBucketlist = function() {
-            var func = 'post';
-            var path = '/bucketlists/';
-            if ($scope.bucketlist.date_created) {
-                func = 'update'
-                path += $scope.bucketlist.id + '/';
-            }
-
-            HttpService[func](path, $scope.bucketlist, function(response) {
-                if (response.status === 200) {
-                    $scope.bucketlist = {};
-                    $scope.toggleBucketListForm();
-                    $scope.getBucketlist('/bucketlists/');
-                }
-            }, function(response) {
-                Util.logout(response);
-            });
+            BucketlistService.save($scope);
         };
 
         $scope.toggleBucketListForm = function() {
             $scope.newBucketlist = !$scope.newBucketlist;
         }
+
         $scope.getBucketlist('/bucketlists/');
     })
-    .controller('RightCtrl', function($scope, $timeout, $mdSidenav, $log) {
-        $scope.close = function() {
-            $mdSidenav('right').close()
-                .then(function() {
-                    $log.debug("close RIGHT is done");
-                });
+    .controller('BucketlistItemCtrl', function($scope, BucketlistItemService, CONFIG) {
+        $scope.items = [];
+        $scope.item = {};
+        $scope.next = false;
+        $scope.previous = false;
+        $scope.total = 0;
+        $scope.bucketlist_name = '';
+        $scope.bucketlist_id = 0;
+        $scope.currentItemUrl = '';
+        $scope.footer_text = 'Bucket list items'
+
+        $scope.getItems = function(url) {
+            BucketlistItemService.get(url, $scope);
         };
+        $scope.$on(CONFIG.loadItemsEvent, function(event, data) {
+            $scope.bucketlist_name = data.bucketlist_name;
+            $scope.bucketlist_id = data.bucketlist_id;
+            $scope.currentItemUrl = '/bucketlists/' + data.bucketlist_id + '/items/';
+            $scope.getItems($scope.currentItemUrl, $scope);
+        });
+
+        $scope.getNextPage = function() {
+            $scope.getItems($scope.next);
+        };
+
+        $scope.getPreviousPage = function() {
+            $scope.getItems($scope.previous);
+        };
+
+        $scope.saveItem = function() {
+            BucketlistItemService.save($scope);
+        };
+
+        $scope.edit = function(index) {
+            $scope.item = $scope.items[index];
+            $scope.toggleRight();
+        };
+
+        $scope.delete = function(index) {
+            $scope.item = $scope.items[index];
+            BucketlistItemService.delete($scope)
+        };
+
+
+
     });

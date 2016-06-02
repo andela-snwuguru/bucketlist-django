@@ -61,6 +61,7 @@ ol li {
   font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
   margin-bottom: 25px;
   border-bottom: 1px solid #ccc;
+  text-transform: capitalize;
 }
 
 li p {
@@ -70,7 +71,9 @@ li p {
   padding-top: 10px;
   color: #555;
 }
-
+.caps{
+  text-transform: uppercase;
+}
 .numList span {
   position: absolute;
   left: 5px;
