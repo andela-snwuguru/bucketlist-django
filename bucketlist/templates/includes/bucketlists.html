@@ -5,15 +5,13 @@
       <md-icon md-svg-icon="{% static 'svg/add.svg' %}" ng-show="!newBucketlist"></md-icon>
       <md-icon md-svg-icon="{% static 'svg/cancel.svg' %}" ng-show="newBucketlist"></md-icon>
     </md-button>
-  </h3>
-    {% include 'new-bucketlist.html' %}
+  </h3> {% include 'includes/new-bucketlist.html' %}
 </md-subheader>
 <md-divider></md-divider>
-
 <ol class='sideList'>
     <li ng-click="showBucketListItems($index)" class="{[{  activeId === bucket.id ? 'li-active' : '' }]}" ng-repeat="bucket in bucketlists">
         <span> {[{ bucket.name}]} <br/> <small>{[{ bucket.date_created.split('T')[0] }]}</small></span>
-        {% include 'bucketlist-option-menu.html' %}
+        {% include 'includes/bucketlist-option-menu.html' %}
     </li>
 </ol>
- {% include 'pagination.html' %}
+{% include 'includes/pagination.html' %}

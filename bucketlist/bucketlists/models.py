@@ -10,20 +10,19 @@ class BucketList(models.Model):
     date_created = models.DateTimeField(auto_now=False, auto_now_add=True)
 
     def __unicode__(self):
-      return self.name
+        return self.name
 
     def __str__(self):
-      return self.name
+        return self.name
 
     def get_absolute_url(self):
-      return reverse('bucketlists:detail', kwargs={'id':self.id})
+        return reverse('bucketlists:detail', kwargs={'id': self.id})
 
     class Meta:
-      ordering = ['-date_created']
-
+        ordering = ['-date_created']
 
     def __repr__(self):
-      return '<BucketList %r>' % self.name
+        return '<BucketList %r>' % self.name
 
 
 class BucketListItem(models.Model):
@@ -34,14 +33,13 @@ class BucketListItem(models.Model):
     bucketlist = models.ForeignKey(BucketList)
 
     def __unicode__(self):
-      return self.task
+        return self.task
 
     def __str__(self):
-      return self.task
+        return self.task
 
     class Meta:
-      ordering = ['-date_created']
+        ordering = ['-date_created']
 
     def __repr__(self):
-      return '<BucketListItem %r>' % self.task
-
+        return '<BucketListItem %r>' % self.task

@@ -1,19 +1,11 @@
 angular.module('bucketlist.controllers', [])
-    .controller('AppCtrl', function($scope, $timeout, $mdSidenav, $log, $mdBottomSheet, $mdToast) {
+    .controller('AppCtrl', function($scope, $mdSidenav, $mdBottomSheet) {
         $scope.toggleLeft = buildToggler('left');
         $scope.toggleRight = buildToggler('right');
 
-        $scope.showToast = function(message) {
-            $mdToast.show(
-                $mdToast.simple()
-                .textContent(message)
-                .position('top right')
-                .hideDelay(5000)
-            );
-        };
-
         $scope.openMenu = function($mdOpenMenu, ev) {
             $mdOpenMenu(ev);
+            console.log('jjes')
         };
 
         function buildToggler(navID) {
@@ -39,13 +31,45 @@ angular.module('bucketlist.controllers', [])
             });
         };
 
-        $scope.sideClick = function() {
-            alert(1);
-        };
     })
 
 .controller('AuthCtrl', function($scope, $mdToast, $location, CONFIG, HttpService, Util, StorageService) {
     $scope.user = {}
+
+        $scope.quotes = [
+        {
+            'name':'Matt Cameron',
+            'message':'Live life to the fullest, and focus on the positive'
+        } ,
+        {
+            'name':'Greg Anderson',
+            'message':'Focus on the journey, not the destination. Joy is found not in finishing an activity but in doing it.'
+        },
+        {
+            'name':'Alexander Graham Bell',
+            'message':`Concentrate all your thoughts upon the work at hand. The sun's rays do not burn until brought to a focus`
+        },
+        {
+            'name':'Brian Tracy',
+            'message':`The key to success is to focus our conscious mind on things we desire not things we fear`
+        },
+        {
+            'name':'Gabby Douglas',
+            'message':`It's very tough for me to focus. I'm like: 'Look, something shiny! No, focus. Oh, there goes a butterfly!`
+        }
+        ]
+
+        var counter = 0;
+        $scope.quote = $scope.quotes[counter];
+        setInterval(function() {
+           counter += 1;
+            if(counter > 4){
+                counter = 0;
+            }
+            $scope.quote = $scope.quotes[counter];
+            $scope.$apply();
+        }, 15000);
+
 
     $scope.login = function() {
         Util.toast("Authorization in progress");
@@ -131,6 +155,9 @@ angular.module('bucketlist.controllers', [])
         };
 
         $scope.toggleBucketListForm = function() {
+            if($scope.newBucketlist){
+                $scope.bucketlist = {};
+            }
             $scope.newBucketlist = !$scope.newBucketlist;
         }
 
@@ -146,6 +173,11 @@ angular.module('bucketlist.controllers', [])
         $scope.bucketlist_id = 0;
         $scope.currentItemUrl = '';
         $scope.footer_text = 'Bucket list items'
+
+        $scope.newItem = function() {
+            $scope.item = {};
+            $scope.toggleRight();
+        };
 
         $scope.getItems = function(url) {
             BucketlistItemService.get(url, $scope);
