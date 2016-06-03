@@ -5,7 +5,7 @@
             <md-button aria-label="Show Bucket List" class="md-fab md-raised md-mini left" ng-click="toggleLeft()" hide-gt-md>
                 <md-icon md-svg-icon="{% static 'svg/menu.svg' %}"></md-icon>
             </md-button>
-            <md-button aria-label="New Bucket List Item" class="md-fab md-raised md-mini right" ng-click="toggleRight()" ng-hide="isOpenRight()">
+            <md-button aria-label="New Bucket List Item" class="md-fab md-raised md-mini right" ng-click="newItem()" ng-hide="isOpenRight()">
                 <md-icon md-svg-src="{% static 'svg/add.svg' %}" aria-label="New Bucket List Item"></md-icon>
             </md-button>
             <h3 class="caps left" style="padding-left:30px">{[{ bucketlist_name }]}</h3>
@@ -22,10 +22,10 @@
                 <md-checkbox  aria-label="Done status" ng-click="checkDone($index)" ng-model="item.done"></md-checkbox>
               </span>
             <p> {[{ item.task }]}</p>
-            {% include 'bucketlist-option-menu.html' %}
+            {% include 'includes/bucketlist-option-menu.html' %}
         </li>
     </ol>
     <div style="clear:both;"></div>
     <small ng-show="!items.length">No bucket list item found</small>
 </div>
-{% include 'pagination.html' %}
+{% include 'includes/pagination.html' %}

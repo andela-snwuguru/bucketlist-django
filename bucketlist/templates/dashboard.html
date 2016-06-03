@@ -5,15 +5,15 @@
             <md-toolbar class="md-theme-indigo">
                 <h1 class="md-toolbar-tools">
             <span>
-              {% include 'logo.html' %}
+              {% include 'includes/logo.html' %}
             </span>
           <span flex></span>
-          {% include 'user-menu.html' %}
+          {% include 'includes/user-menu.html' %}
         </h1>
             </md-toolbar>
             <md-content ng-controller="BucketlistCtrl">
                 <section>
-                    {% include 'bucketlists.html' %}
+                    {% include 'includes/bucketlists.html' %}
                 </section>
             </md-content>
         </md-sidenav>
@@ -30,14 +30,14 @@
                     </div>
                 </md-toolbar>
                 <section>
-                    {% include 'bucketlist-items.html' %}
+                    {% include 'includes/bucketlist-items.html' %}
                 </section>
             </div>
             <div flex></div>
             <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
                 <section>
                     <div>
-                        {% include 'new-bucketlist-item.html' %}
+                        {% include 'includes/new-bucketlist-item.html' %}
                     </div>
                 </section>
             </md-sidenav>

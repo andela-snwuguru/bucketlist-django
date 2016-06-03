@@ -155,6 +155,9 @@ angular.module('bucketlist.controllers', [])
         };
 
         $scope.toggleBucketListForm = function() {
+            if($scope.newBucketlist){
+                $scope.bucketlist = {};
+            }
             $scope.newBucketlist = !$scope.newBucketlist;
         }
 
@@ -170,6 +173,11 @@ angular.module('bucketlist.controllers', [])
         $scope.bucketlist_id = 0;
         $scope.currentItemUrl = '';
         $scope.footer_text = 'Bucket list items'
+
+        $scope.newItem = function() {
+            $scope.item = {};
+            $scope.toggleRight();
+        };
 
         $scope.getItems = function(url) {
             BucketlistItemService.get(url, $scope);
