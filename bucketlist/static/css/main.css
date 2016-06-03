@@ -1,0 +1,277 @@
+md-toolbar.md-default-theme:not(.md-menu-toolbar),
+md-toolbar:not(.md-menu-toolbar) {
+    background-color: rgb(231, 245, 251);
+}
+
+body {
+    font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+}
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar),
+md-toolbar:not(.md-menu-toolbar) {
+    color: #000;
+}
+
+md-content.md-default-theme,
+md-content,
+.md-subheader.md-default-theme,
+.md-subheader,
+md-sidenav md-content {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+md-bottom-sheet.md-default-theme,
+md-bottom-sheet {
+    background-color: rgba(255, 255, 255, .8);
+}
+
+md-list-item a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #000;
+}
+
+.logo {
+    width: 160px;
+}
+
+.slide-bg {
+    background-color: #000;
+    background-position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-image: url(../images/slides/slide1.jpg)
+}
+
+.slogan {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 300px;
+    font-size: 24px;
+    position: absolute;
+    z-index: 1;
+    padding: 10px;
+    padding-left: 10%;
+    background-color: rgba(0, 0, 0, .5);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+}
+
+.login-panel {
+    background: rgba(211, 240, 251, .7);
+    padding: 10px;
+    z-index: 1 !important;
+    position: absolute;
+    min-width: 400px;
+    right: 50px;
+}
+
+.quote {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 28px;
+    margin-top: 50px;
+    left: 50px;
+    position: absolute;
+    z-index: 1;
+    text-shadow: 2px 2px #000000;
+    width: 45%;
+}
+
+.author {
+    color: white;
+    font-weight: bold;
+    text-align: right;
+    float: right;
+    padding: 10px;
+    text-shadow: 1px 1px rgb(10, 72, 97);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+}
+
+@media screen and (max-width: 950px) {
+    .slogan {
+        padding-left: 1%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .slogan {
+        padding-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+    .quote {
+        width: 100%;
+        text-align: center;
+    }
+    .author {
+        margin-right: 100px;
+    }
+    .login-panel {
+        left: 27%;
+        top: 70%;
+        max-width: 400px;
+    }
+}
+
+md-card {
+    border-radius: 10px;
+}
+
+md-input-container label {
+    margin-left: 10px !important;
+}
+
+input {
+    border-radius: 20px !important;
+    min-height: 40px !important;
+    padding-left: 10px !important;
+}
+
+.padding {
+    padding: 10px;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+.md-subheader.md-default-theme.md-primary,
+.md-subheader.md-primary {
+    color: rgb(18, 161, 218);
+}
+
+.md-button.md-default-theme.md-primary.md-raised,
+.md-button.md-primary.md-raised,
+.md-button.md-default-theme.md-primary.md-fab,
+.md-button.md-primary.md-fab {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: rgb(18, 161, 218) !important;
+}
+
+.md-button.md-primary.md-raised:hover {
+    background-color: rgba(18, 161, 218, 0.42) !important;
+}
+
+.brush {
+    font-family: 'Gill Sans UltraBold', cursive;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 500;
+    line-height: 26.4px;
+}
+
+.bottomSheets .md-inline-list-icon-label {
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: -10px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+.bottomSheets .md-grid-item-content {
+    height: 450px;
+}
+
+.bottomSheets .md-grid-item-content md-icon {
+    height: 48px;
+    width: 48px;
+}
+
+.bottomSheets .md-grid-text {
+    padding-bottom: 5px;
+}
+
+.bottomSheets md-bottom-sheet.md-grid md-list-item .md-grid-text {
+    padding-top: 25px;
+}
+
+.bottomSheets md-list-item,
+.bottomSheets md-list-item .md-list-item-inner {
+    min-height: 48px;
+}
+
+.bottomSheets h2 {
+    line-height: 36px;
+    padding-top: 40px;
+}
+
+md-sidenav {
+    width: 400px;
+    height: 100vh;
+}
+
+ol {
+    color: #ccc;
+    list-style-type: none;
+}
+
+ol li {
+    position: relative;
+    font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #ccc;
+    text-transform: capitalize;
+}
+
+li p {
+    font: 14px/1.5 Helvetica, sans-serif;
+    padding-left: 60px;
+    padding-right: 40px;
+    padding-top: 10px;
+    color: #555;
+}
+
+.caps {
+    text-transform: uppercase;
+}
+
+.numList span {
+    position: absolute;
+    left: 5px;
+}
+
+.numList li {
+    min-height: 70px;
+}
+
+.list-secondary {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.list-secondary-first {
+    position: absolute;
+    right: 0;
+    top: 10px;
+}
+
+.sideList li {
+    font: 12px/1.5 Helvetica, sans-serif;
+    padding: 10px;
+    color: #555;
+    font-weight: bold;
+}
+
+.li-active {
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+}
+
+ol li:hover {
+    background-color: #eee;
+    cursor: pointer;
+}
+
+._md-subheader-wrapper:not(.md-sticky-no-effect) .md-subheader {
+    margin: 0;
+    margin-left: -40px;
+    margin-top: -10px;
+}

@@ -1,0 +1,17 @@
+{
+    "name": "bucketlist-django",
+    "description": "Pen it down, push yourself to do more",
+    "scripts": {},
+    "env": {},
+    "formation": {
+        "web": {
+            "quantity": 1
+        }
+    },
+    "addons": [
+        "heroku-postgresql"
+    ],
+    "buildpacks": [{
+        "url": "heroku/python"
+    }]
+}
