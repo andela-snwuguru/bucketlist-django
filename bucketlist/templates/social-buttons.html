@@ -1,28 +1,25 @@
 {% load staticfiles %}
 <md-bottom-sheet class="md-grid bottomSheets" layout="column" ng-cloak>
-  <div>
-    <md-list flex layout="row" layout-align="center center">
-
-      <md-list-item>
-        <a href="{% url 'social:begin' backend='facebook' %}?next={{ request.path }}" class="md-grid-item-content">
-        <md-icon md-svg-src="{% static 'svg/facebook.svg' %}"></md-icon>
-          <div class="md-grid-text"> Facebook</div>
-        </a>
-      </md-list-item>
-
-      <md-list-item>
-        <a href="{% url 'social:begin' backend='twitter' %}?next={{ request.path }}" class="md-grid-item-content">
-        <md-icon md-svg-src="{% static 'svg/twitter.svg' %}"></md-icon>
-          <div class="md-grid-text"> Twitter</div>
-        </a>
-      </md-list-item>
-
-      <md-list-item>
-        <a href="{% url 'social:begin' backend='google-oauth2' %}?next={{ request.path }}" class="md-grid-item-content">
-        <md-icon md-svg-src="{% static 'svg/google.svg' %}"></md-icon>
-          <div class="md-grid-text"> Google</div>
-        </a>
-      </md-list-item>
-    </md-list>
-  </div>
+    <div>
+        <md-list flex layout="row" layout-align="center center">
+            <md-list-item>
+                <a href="{% url 'social:begin' backend='facebook' %}?next={{ request.path }}" class="md-grid-item-content">
+                    <md-icon md-svg-src="{% static 'svg/facebook.svg' %}"></md-icon>
+                    <div class="md-grid-text"> Facebook</div>
+                </a>
+            </md-list-item>
+            <md-list-item>
+                <a href="{% url 'social:begin' backend='twitter' %}?next={{ request.path }}" class="md-grid-item-content">
+                    <md-icon md-svg-src="{% static 'svg/twitter.svg' %}"></md-icon>
+                    <div class="md-grid-text"> Twitter</div>
+                </a>
+            </md-list-item>
+            <md-list-item>
+                <a href="{% url 'social:begin' backend='google-oauth2' %}?next={{ request.path }}" class="md-grid-item-content">
+                    <md-icon md-svg-src="{% static 'svg/google.svg' %}"></md-icon>
+                    <div class="md-grid-text"> Google</div>
+                </a>
+            </md-list-item>
+        </md-list>
+    </div>
 </md-bottom-sheet>

@@ -1,43 +1,49 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
-{% block content %}
-<div ng-controller="AppCtrl" ng-cloak>
- <div layout-gt-xs="row" layout-xs="column">
-  <div flex>
-   <md-toolbar>
-        <div class="md-toolbar-tools">
-          <h2>
-            <span>
-              <img src="{% static 'images/logo-white-small.png' %}" alt="Bucket List" />
-            </span>
-          </h2>
-          <span flex></span>
+{% extends 'base.html' %} {% load staticfiles %} {% block content %}
 
-        </div>
-   </md-toolbar>
-
-   <div hide-xs>
-      <img src="{% static 'images/Your-bucket-list.jpg' %}" style="width:100%" />
-   </div>
-  </div>
-
-  <div flex class="padding">
-    <h1 class="brush">According to Merriam-Webster Dictionary, a Bucket List is a list of things that one has not done before but wants to do before dying.</h1>
-    <p>Here is a platform that gives you the opportunity to organize your bucket lists</p>
-    <div>
-
-    {% include 'login.html' %}
+<div ng-controller="AppCtrl" ng-cloak class="slide-bg">
+<ul class="cb-slideshow">
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+        </ul>
+<div>
+        <md-toolbar style="background:rgba(255, 255, 255, .8);">
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span>
+                          <img src="{% static 'images/logo.png' %}" alt="Bucket List" class="logo"  />
+                        </span>
+                    </h2>
+                    <span flex></span>
+                </div>
+            </md-toolbar>
 
     </div>
-  </div>
-</div>
-</div>
+    <div layout-gt-xs="row" layout-xs="column" ng-controller="AuthCtrl">
 
+        <div flex>
+
+            <div hide-xs></div>
+            <div class="quote"><h3>{[{ quote.message }]}</h3>
+                <small class="author"><i>{[{ quote.name }]}</i></small>
+            </div>
+            <p class="slogan">Pen it down, challenge yourself to do more</p>
+        </div>
+        <div flex class="padding">
+
+            <div flex='70'>
+                {% include 'login.html' %}
+            </div>
+        </div>
+
+    </div>
+</div>
 <script type="text/ng-template" id="social-buttons.html">
-{% include 'social-buttons.html' %}
+    {% include 'social-buttons.html' %}
 </script>
-
-<script type="text/ng-template" id="register.html"  ng-controller="AppCtrl">
-{% include 'register.html' %}
+<script type="text/ng-template" id="register.html" ng-controller="AppCtrl">
+    {% include 'register.html' %}
 </script>
 {% endblock content %}

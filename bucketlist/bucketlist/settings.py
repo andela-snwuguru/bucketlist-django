@@ -54,9 +54,9 @@ REST_FRAMEWORK = {
     ),
 }
 JWT_AUTH = {
-    'JWT_ALLOW_REFRESH':True,
+    'JWT_ALLOW_REFRESH': True,
     'JWT_AUTH_HEADER_PREFIX': 'DBL',
-    'JWT_RESPONSE_PAYLOAD_HANDLER':'bucketlists.api.helper.jwt_response_payload_handler',
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'bucketlists.api.helper.jwt_response_payload_handler',
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=1200),
 
 }
@@ -97,7 +97,7 @@ ROOT_URLCONF = 'bucketlist.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

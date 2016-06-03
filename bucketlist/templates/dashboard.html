@@ -1,61 +1,46 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
-{% block content %}
-<div ng-controller="AppCtrl" layout="column" style="height:500px;" ng-cloak>
-  <section layout="row" flex>
-    <md-sidenav
-    class="md-sidenav-left md-whiteframe-z2"
-    md-component-id="left"
-    md-is-locked-open="$mdMedia('gt-md')"
-    >
-      <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">
+{% extends 'base.html' %} {% load staticfiles %} {% block content %}
+<div ng-controller="AppCtrl" layout="column" style="height:100vh;" ng-cloak>
+    <section layout="row" flex>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="background:rgba(255, 255, 255, .2);">
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">
             <span>
-              <img src="{% static 'images/logo-white-small.png' %}" alt="Bucket List" />
+              {% include 'logo.html' %}
             </span>
           <span flex></span>
           {% include 'user-menu.html' %}
         </h1>
-
-      </md-toolbar>
-
-      <md-content ng-controller="BucketlistCtrl">
-         <section>
-          {% include 'bucketlists.html' %}
-        </section>
-      </md-content>
-    </md-sidenav>
-    <md-content flex ng-controller="BucketlistItemCtrl">
-      <div layout="column" layout-fill layout-align="top left">
-      <md-toolbar hide-gt-md>
-
-        <div class="md-toolbar-tools">
-          <h2>
+            </md-toolbar>
+            <md-content ng-controller="BucketlistCtrl">
+                <section>
+                    {% include 'bucketlists.html' %}
+                </section>
+            </md-content>
+        </md-sidenav>
+        <md-content flex ng-controller="BucketlistItemCtrl">
+            <div layout="column" layout-fill layout-align="top left">
+                <md-toolbar hide-gt-md>
+                    <div class="md-toolbar-tools">
+                        <h2>
             <span>
               <img src="{% static 'images/logo-white-small.png' %}" alt="Bucket List" />
             </span>
           </h2>
-          <span flex></span>
-        </div>
-      </md-toolbar>
-      <section>
-      {% include 'bucketlist-items.html' %}
-      </section>
-
-      </div>
-      <div flex></div>
-
-      <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
-      <section>
-        <div>
-          {% include 'new-bucketlist-item.html' %}
-        </div>
-      </section>
-
-    </md-sidenav>
-
-    </md-content>
-
-  </section>
-
-  {% endblock content %}
+                        <span flex></span>
+                    </div>
+                </md-toolbar>
+                <section>
+                    {% include 'bucketlist-items.html' %}
+                </section>
+            </div>
+            <div flex></div>
+            <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+                <section>
+                    <div>
+                        {% include 'new-bucketlist-item.html' %}
+                    </div>
+                </section>
+            </md-sidenav>
+        </md-content>
+    </section>
+    {% endblock content %}

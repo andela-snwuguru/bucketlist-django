@@ -1,36 +1,31 @@
 {% load staticfiles %}
 <md-bottom-sheet class="md-list md-has-header" ng-cloak>
-  <md-card>
+    <md-card>
         <md-card-title>
-          <md-card-title-text>
-            <span class="md-headline">User Registration</span>
-          </md-card-title-text>
+            <md-card-title-text>
+                <span class="md-headline">User Registration</span>
+            </md-card-title-text>
         </md-card-title>
         <md-card-content>
-        <form  ng-submit="newAccount()">
-          <md-input-container class="md-block">
-            <md-icon md-svg-src="{% static 'svg/avatar.svg' %}" class="username"></md-icon>
-            <input ng-model="user.username" type="text" placeholder="Username (required)" ng-required="true">
-          </md-input-container>
-
-          <md-input-container class="md-block">
-            <md-icon md-svg-src="{% static 'svg/internet-mail-arroba-sign-outline.svg' %}" class="email"></md-icon>
-            <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
-          </md-input-container>
-
-          <md-input-container class="md-block">
-            <md-icon md-svg-src="{% static 'svg/padlock.svg' %}" class="password"></md-icon>
-            <input ng-model="user.password" type="password" placeholder="Password (required)" ng-required="true">
-          </md-input-container>
-
-          <md-input-container class="md-block">
-            <md-icon md-svg-src="{% static 'svg/padlock.svg' %}" class="confirmPassword"></md-icon>
-            <input ng-model="user.confirmPassword" type="password" placeholder="Confirm Password (required)" ng-required="true">
-          </md-input-container>
-
-          <md-button class="md-raised md-primary right" type="submit">Create Account</md-button>
-        </form>
+            <form ng-submit="newAccount()">
+                <md-input-container class="md-block">
+                    <md-icon md-svg-src="{% static 'svg/avatar.svg' %}" class="username"></md-icon>
+                    <input ng-model="user.username" type="text" placeholder="Username (required)" ng-required="true">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <md-icon md-svg-src="{% static 'svg/internet-mail-arroba-sign-outline.svg' %}" class="email"></md-icon>
+                    <input ng-model="user.email" type="email" placeholder="Email (required)" ng-required="true">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <md-icon md-svg-src="{% static 'svg/padlock.svg' %}" class="password"></md-icon>
+                    <input ng-model="user.password" type="password" placeholder="Password (required)" ng-required="true">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <md-icon md-svg-src="{% static 'svg/padlock.svg' %}" class="confirmPassword"></md-icon>
+                    <input ng-model="user.confirmPassword" type="password" placeholder="Confirm Password (required)" ng-required="true">
+                </md-input-container>
+                <md-button class="md-raised md-primary right" type="submit">Create Account</md-button>
+            </form>
         </md-card-content>
-      </md-card>
-
+    </md-card>
 </md-bottom-sheet>

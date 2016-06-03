@@ -6,9 +6,12 @@ from .views import *
 urlpatterns = [
     url(r'^auth/register/$', RegistrationApiView.as_view(), name='register'),
     url(r'^auth/login/$', obtain_jwt_token, name='login'),
-     url(r'^auth/token/refresh/', refresh_jwt_token),
+    url(r'^auth/token/refresh/', refresh_jwt_token),
     url(r'^bucketlists/$', BucketlistListCreateApiView.as_view(), name='list'),
-    url(r'^bucketlists/(?P<id>\d+)/$', BucketlistRetrieveUpdateDestroyAPIView.as_view(), name='detail'),
-    url(r'^bucketlists/(?P<id>\d+)/items/(?P<pk>\d+)/$', BucketlistItemRetrieveUpdateDestroyAPIView.as_view(), name='itemDetail'),
-    url(r'^bucketlists/(?P<id>\d+)/items/$', BucketlistItemListCreateApiView.as_view(), name='item-list'),
+    url(r'^bucketlists/(?P<id>\d+)/$',
+        BucketlistRetrieveUpdateDestroyAPIView.as_view(), name='detail'),
+    url(r'^bucketlists/(?P<id>\d+)/items/(?P<pk>\d+)/$',
+        BucketlistItemRetrieveUpdateDestroyAPIView.as_view(), name='itemDetail'),
+    url(r'^bucketlists/(?P<id>\d+)/items/$',
+        BucketlistItemListCreateApiView.as_view(), name='item-list'),
 ]
