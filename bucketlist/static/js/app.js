@@ -1,4 +1,4 @@
-angular.module('Bucketlist', ['bucketlist.controllers', 'bucketlist.services', 'ngMaterial', 'ngResource'])
+angular.module('Bucketlist', ['bucketlist.controllers', 'bucketlist.services', 'ngMaterial'])
     .config(function($interpolateProvider, $httpProvider) {
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
