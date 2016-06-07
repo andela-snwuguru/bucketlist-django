@@ -6,6 +6,6 @@ angular.module('Bucketlist', ['bucketlist.controllers', 'bucketlist.services', '
         $interpolateProvider.endSymbol('}]}');
     })
     .constant('CONFIG', {
-        apiUrl: 'http://littlehope.herokuapp.com/api/v1',
+        apiUrl: 'https://littlehope.herokuapp.com/api/v1',
         loadItemsEvent: 'active-bucketlist-change'
     });
