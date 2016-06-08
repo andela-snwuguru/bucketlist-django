@@ -9,6 +9,8 @@ if 'test' in sys.argv:
             'NAME': os.path.join(BASE_DIR, 'testdb.sqlite3'),
         }
     }
+    SECRET_KEY = "test-secret"
+
 
 else:
     DATABASES = {
