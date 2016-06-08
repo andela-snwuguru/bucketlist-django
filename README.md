@@ -14,7 +14,7 @@ Nobody lives forever, it is what we do or archive that lives forever in the hear
 
 ### API Documentation
 
-The API documentation can be found <a href="https://littlehope.herokuapp.com">here</a>
+The API documentation can be found <a href="https://littlehope.herokuapp.com/api/v1/docs">here</a>
 
 ### How to use
 
