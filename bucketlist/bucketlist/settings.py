@@ -54,6 +54,16 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
 }
+
+SWAGGER_SETTINGS = {
+    'enabled_methods': [
+        'get',
+        'post',
+        'put',
+        'delete'
+    ],
+}
+
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
     'JWT_AUTH_HEADER_PREFIX': 'DBL',
@@ -75,6 +85,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'social.apps.django_app.default',
     'django_nose',
+    'rest_framework_swagger',
 ]
 
 # Use nose to run all tests

@@ -18,6 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api/v1/docs/', include('rest_framework_swagger.urls')),
     url('', include('social.apps.django_app.urls', namespace='social')),
     url(r'^', include('bucketlists.urls', namespace='bucketlists')),
     url(r'^api/v1/',
