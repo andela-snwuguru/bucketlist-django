@@ -5,6 +5,6 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - python codango/manage.py test
+  - python bucketlist/manage.py test
 after_success:
   - coveralls
