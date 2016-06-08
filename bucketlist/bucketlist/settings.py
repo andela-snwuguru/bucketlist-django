@@ -74,6 +74,15 @@ INSTALLED_APPS = [
     'bucketlists',
     'rest_framework',
     'social.apps.django_app.default',
+    'django_nose',
+]
+
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=bucketlists.api,bucketlists.views',
 ]
 
 MIDDLEWARE_CLASSES = [
