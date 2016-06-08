@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '@f*bztzc-o%4zoas@34fwdss)^+98v+b96ea_w!(+uitaw&#_e'
+SECRET_KEY =  '@f*bztzc-o%4zoas@34fwdss)^+98v+b96ea_w!(+uitaw&#_e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 import dj_database_url
@@ -54,6 +54,16 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
 }
+
+SWAGGER_SETTINGS = {
+    'enabled_methods': [
+        'get',
+        'post',
+        'put',
+        'delete'
+    ],
+}
+
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
     'JWT_AUTH_HEADER_PREFIX': 'DBL',
@@ -75,6 +85,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'social.apps.django_app.default',
     'django_nose',
+    'rest_framework_swagger',
 ]
 
 # Use nose to run all tests

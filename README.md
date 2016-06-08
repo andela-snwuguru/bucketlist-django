@@ -1,5 +1,7 @@
 # Django Powered Bucketlist Application
+
 [![Build Status](https://travis-ci.org/andela-snwuguru/bucketlist-django.svg?branch=master)](https://travis-ci.org/andela-snwuguru/bucketlist-django)  [![Coverage Status](https://coveralls.io/repos/github/andela-snwuguru/bucketlist-django/badge.svg?branch=master)](https://coveralls.io/github/andela-snwuguru/bucketlist-django?branch=master)
+
 Nobody lives forever, it is what we do or archive that lives forever in the heart of men. This application gives you little hope to archive that. Pen it down, challenge yourself to do more.
 
 ### Technology used
@@ -12,7 +14,7 @@ Nobody lives forever, it is what we do or archive that lives forever in the hear
 
 ### API Documentation
 
-The API documentation can be found here
+The API documentation can be found <a href="https://littlehope.herokuapp.com">here</a>
 
 ### How to use
 
