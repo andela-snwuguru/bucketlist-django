@@ -5,6 +5,6 @@ python:
 install:
   - pip install -r requirements.txt
 script:
-  - python bucketlist/manage.py test
+  - cd bucketlist && python manage.py test
 after_success:
   - coveralls
