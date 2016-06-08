@@ -34,6 +34,9 @@ class AccountTest(APITestCase):
         response = self.client.post('/api/v1/auth/login/', user_detail)
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.data.get('login'))
+        user_detail['username'] = 'wrong'
+        response = self.client.post('/api/v1/auth/login/', user_detail)
+        self.assertEqual(response.status_code, 400)
 
 
 
