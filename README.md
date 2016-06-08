@@ -50,6 +50,23 @@ DATABASES = {
 DEBUG = True
 
  ```
+
+#### bucketlist-django/.env.py
+.env.py file is also required to configure secured information. See content below.
+
+```
+SECRET_KEY = "your-secret-code"
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'oauth2 key from google'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'oauth2 secret from google'
+SOCIAL_AUTH_FACEBOOK_KEY = 'app id'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'app secret'
+SOCIAL_AUTH_TWITTER_KEY = 'customer key'
+SOCIAL_AUTH_TWITTER_SECRET = 'customer secret'
+
+
+```
+
+
 #### Run your build
 
 `` $ python bucketlist/manage.py runserver ``

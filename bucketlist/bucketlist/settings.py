@@ -12,15 +12,18 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import datetime
+from django_envie.workroom import convertfiletovars
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+convertfiletovars()
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY =  '@f*bztzc-o%4zoas@34fwdss)^+98v+b96ea_w!(+uitaw&#_e'
+SECRET_KEY =  os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 import dj_database_url
@@ -28,13 +31,13 @@ import dj_database_url
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '399435236867-n6li9g8tscnu0gi6ej1uc9u19hivgech.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'ZpbO0yeMuxfWDRBMefV4cpGK'
-SOCIAL_AUTH_FACEBOOK_KEY = '135058293567210'
-SOCIAL_AUTH_FACEBOOK_SECRET = '3794c7d0b837e76b9e4f1ebc82c966ba'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+SOCIAL_AUTH_FACEBOOK_KEY = os.getenv('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = os.getenv('SOCIAL_AUTH_FACEBOOK_SECRET')
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-SOCIAL_AUTH_TWITTER_KEY = 'TvlbHdt1Bx5DqpTA8K39tsqsw'
-SOCIAL_AUTH_TWITTER_SECRET = '7oxmnJp9dWphmpTAnUVxEzE8uhmWDQaxprAYx8dbKwb1gzveie'
+SOCIAL_AUTH_TWITTER_KEY = os.getenv('SOCIAL_AUTH_TWITTER_KEY')
+SOCIAL_AUTH_TWITTER_SECRET = os.getenv('SOCIAL_AUTH_TWITTER_SECRET')
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 SOCIAL_AUTH_LOGIN_URL = '/'
 
