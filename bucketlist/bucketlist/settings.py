@@ -38,6 +38,13 @@ SOCIAL_AUTH_TWITTER_SECRET = '7oxmnJp9dWphmpTAnUVxEzE8uhmWDQaxprAYx8dbKwb1gzveie
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 SOCIAL_AUTH_LOGIN_URL = '/'
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'testdb.sqlite3'),
+    }
+}
+
 try:
     from .development import *
 except ImportError:
