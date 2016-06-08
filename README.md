@@ -30,9 +30,6 @@ To install the build locally
 
 #### Set Up your environment key
 
-- `` $ touch .env.yml ``
-- `` $ echo 'SECRET_KEY="any-key-you-wish" ``
-
 #### bucketlist-django/bucketlist/bucketlist/development.py
 
 Development.py file is required to get the database configuration. See content below
