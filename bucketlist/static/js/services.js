@@ -57,9 +57,7 @@ angular.module('bucketlist.services', [])
                     if (response.data.token) {
                         StorageService.setItem('token', response.data.token)
                     }
-                }, function(response) {
-                    Util.logout(response);
-                });
+                }, Util.errorHandler);
             }
         }
     })
