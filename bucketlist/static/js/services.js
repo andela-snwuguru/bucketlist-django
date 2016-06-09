@@ -82,6 +82,7 @@ angular.module('bucketlist.services', [])
                 }else{
                     $scope.bucketlists = [];
                     $scope.total = 0;
+                    Util.broadcast(0, '')
                 }
                 Util.toast('done!')
             }, function(response) {
