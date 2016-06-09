@@ -81,10 +81,7 @@ angular.module('bucketlist.services', [])
 
                 }
                 Util.toast('done!')
-            }, function(response) {
-                if(response.status != 404)
-                    Util.logout(response);
-            });
+            }, Util.errorHandler);
         },
         save: function($scope) {
             Util.toast('Saving Bucketlist')
@@ -99,25 +96,19 @@ angular.module('bucketlist.services', [])
                 $scope.toggleBucketListForm();
                 Util.toast('done!')
                 $scope.getBucketlist('/bucketlists/');
-            }, function(response) {
-                if(response.status != 404)
-                    Util.logout(response);
-            });
+            }, Util.errorHandler);
         },
         delete: function(bucketlist_id, $scope) {
             Util.toast('Deleting Bucketlist')
             HttpService.delete('/bucketlists/' + bucketlist_id, function(response) {
                 if (response.status === 204) {
                     Util.toast('done!')
-                    if($scope.bucketlists.length == 1){
+                    if ($scope.bucketlists.length == 1) {
                         document.location.href = '/';
                     }
                     $scope.getBucketlist('/bucketlists/');
                 }
-            }, function(response) {
-                if(response.status != 404)
-                    Util.logout(response);
-            });
+            }, Util.errorHandler);
         }
     };
 })
@@ -135,10 +126,7 @@ angular.module('bucketlist.services', [])
                     AuthService.refreshToken();
                 }
                 Util.toast('done!')
-            }, function(response) {
-                if(response.status != 404)
-                    Util.logout(response);
-            });
+            }, Util.errorHandler);
         },
         save: function($scope, toggle) {
             Util.toast('Saving Bucketlist item')
@@ -150,14 +138,11 @@ angular.module('bucketlist.services', [])
             }
             HttpService[func](path, $scope.item, function(response) {
                 $scope.item = {};
-                if(toggle){
-                  $scope.toggleRight();
+                if (toggle) {
+                    $scope.toggleRight();
                 }
                 Util.broadcast($scope.bucketlist_id, $scope.bucketlist_name)
-            }, function(response) {
-                if(response.status != 404)
-                    Util.logout(response);
-            });
+            }, Util.errorHandler);
         },
         delete: function($scope) {
             Util.toast('Deleting Bucketlist item')
@@ -167,10 +152,7 @@ angular.module('bucketlist.services', [])
                     $scope.getItems('/bucketlists/' + $scope.bucketlist_id + '/items/');
                     $scope.item = {};
                 }
-            }, function(response) {
-                if(response.status != 404)
-                    Util.logout(response);
-            });
+            }, Util.errorHandler);
         }
     };
 })
@@ -200,6 +182,10 @@ angular.module('bucketlist.services', [])
             if ((response && response.status) || !response) {
                 document.location.href = '/logout';
             }
+        },
+        errorHandler: function(response) {
+            if (response.status === 403)
+                Util.logout(response);
         }
     };
     return Util;
