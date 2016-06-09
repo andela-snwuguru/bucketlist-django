@@ -79,6 +79,8 @@ angular.module('bucketlist.services', [])
                     Util.broadcast(response.data.results[0].id, response.data.results[0].name)
                     AuthService.refreshToken();
 
+                }else{
+                    $scope.bucketlists = []
                 }
                 Util.toast('done!')
             }, function(response) {
@@ -127,6 +129,8 @@ angular.module('bucketlist.services', [])
                     $scope.next = response.data.next;
                     $scope.previous = response.data.previous;
                     AuthService.refreshToken();
+                }else{
+                    $scope.items = []
                 }
                 Util.toast('done!')
             }, function(response) {
