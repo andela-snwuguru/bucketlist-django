@@ -9,12 +9,12 @@ class AccountTest(APITestCase):
     def setUp(self):
         """Set up base user and details for test running."""
         # register a user
-        #self.register()
+        # self.register()
 
     def register(self):
         user_detail = {
             'username': 'sundayguru',
-            'email':'test@example.com',
+            'email': 'test@example.com',
             'password': 'tester123',
             'first_name': 'sunday',
             'last_name': 'goodman',
@@ -39,7 +39,6 @@ class AccountTest(APITestCase):
         self.assertEqual(response.status_code, 400)
 
 
-
 class BucketlistTest(APITestCase):
 
     """Test /api/v1/bucketlists/ endpoint"""
@@ -53,7 +52,7 @@ class BucketlistTest(APITestCase):
     def register(self):
         user_detail = {
             'username': 'sundayguru',
-            'email':'test@example.com',
+            'email': 'test@example.com',
             'password': 'tester123',
             'first_name': 'sunday',
             'last_name': 'goodman',
@@ -88,21 +87,26 @@ class BucketlistTest(APITestCase):
     def test_bucketlist_list_single(self):
         res = self.create_bucketlist('Test list')
         bucketlist_id = res.data.get('id')
-        response = self.client.get('/api/v1/bucketlists/'+ str(bucketlist_id) + '/')
+        response = self.client.get(
+            '/api/v1/bucketlists/' + str(bucketlist_id) + '/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.get('id'), bucketlist_id)
 
     def test_bucketlist_update(self):
         res = self.create_bucketlist('Test list')
         bucketlist_id = res.data.get('id')
-        response = self.client.put('/api/v1/bucketlists/'+ str(bucketlist_id) + '/',{'name':'Test list modified'})
+        response = self.client.put(
+            '/api/v1/bucketlists/' + str(bucketlist_id) + '/',
+            {'name': 'Test list modified'}
+        )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.get('name'), 'Test list modified')
 
     def test_bucketlist_delete(self):
         res = self.create_bucketlist('Test list')
         bucketlist_id = res.data.get('id')
-        response = self.client.delete('/api/v1/bucketlists/'+ str(bucketlist_id) + '/')
+        response = self.client.delete(
+            '/api/v1/bucketlists/' + str(bucketlist_id) + '/')
         self.assertEqual(response.status_code, 204)
 
 
@@ -117,12 +121,13 @@ class BucketlistItemTest(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION=self.token)
         bucketlists = self.create_bucketlist('test list')
         self.bucketlist_id = bucketlists.data.get('id')
-        self.item_path = '/api/v1/bucketlists/' + str(self.bucketlist_id) + '/items/'
+        self.item_path = '/api/v1/bucketlists/' + \
+            str(self.bucketlist_id) + '/items/'
 
     def register(self):
         user_detail = {
             'username': 'sundayguru',
-            'email':'test@example.com',
+            'email': 'test@example.com',
             'password': 'tester123',
             'first_name': 'sunday',
             'last_name': 'goodman',
@@ -170,7 +175,10 @@ class BucketlistItemTest(APITestCase):
     def test_bucketlist_item_update(self):
         res = self.create_bucketlist_item('Test list item')
         item_id = res.data.get('id')
-        response = self.client.put(self.item_path + str(item_id) + '/',{'task':'Test list item modified'})
+        response = self.client.put(
+            self.item_path + str(item_id) + '/',
+            {'task': 'Test list item modified'}
+        )
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.get('task'), 'Test list item modified')
 
@@ -179,8 +187,3 @@ class BucketlistItemTest(APITestCase):
         item_id = res.data.get('id')
         response = self.client.delete(self.item_path + str(item_id) + '/')
         self.assertEqual(response.status_code, 204)
-
-
-
-
-
