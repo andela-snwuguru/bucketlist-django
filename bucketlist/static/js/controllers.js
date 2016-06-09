@@ -35,39 +35,33 @@ angular.module('bucketlist.controllers', [])
 .controller('AuthCtrl', function($scope, $mdToast, $location, CONFIG, HttpService, Util, StorageService) {
     $scope.user = {}
 
-        $scope.quotes = [
-        {
-            'name':'Matt Cameron',
-            'message':'Live life to the fullest, and focus on the positive'
-        } ,
-        {
-            'name':'Greg Anderson',
-            'message':'Focus on the journey, not the destination. Joy is found not in finishing an activity but in doing it.'
-        },
-        {
-            'name':'Alexander Graham Bell',
-            'message':`Concentrate all your thoughts upon the work at hand. The sun's rays do not burn until brought to a focus`
-        },
-        {
-            'name':'Brian Tracy',
-            'message':`The key to success is to focus our conscious mind on things we desire not things we fear`
-        },
-        {
-            'name':'Gabby Douglas',
-            'message':`It's very tough for me to focus. I'm like: 'Look, something shiny! No, focus. Oh, there goes a butterfly!`
-        }
-        ]
+    $scope.quotes = [{
+        'name': 'Matt Cameron',
+        'message': 'Live life to the fullest, and focus on the positive'
+    }, {
+        'name': 'Greg Anderson',
+        'message': 'Focus on the journey, not the destination. Joy is found not in finishing an activity but in doing it.'
+    }, {
+        'name': 'Alexander Graham Bell',
+        'message': `Concentrate all your thoughts upon the work at hand. The sun's rays do not burn until brought to a focus`
+    }, {
+        'name': 'Brian Tracy',
+        'message': `The key to success is to focus our conscious mind on things we desire not things we fear`
+    }, {
+        'name': 'Gabby Douglas',
+        'message': `It's very tough for me to focus. I'm like: 'Look, something shiny! No, focus. Oh, there goes a butterfly!`
+    }]
 
-        var counter = 0;
+    var counter = 0;
+    $scope.quote = $scope.quotes[counter];
+    setInterval(function() {
+        counter += 1;
+        if (counter > 4) {
+            counter = 0;
+        }
         $scope.quote = $scope.quotes[counter];
-        setInterval(function() {
-           counter += 1;
-            if(counter > 4){
-                counter = 0;
-            }
-            $scope.quote = $scope.quotes[counter];
-            $scope.$apply();
-        }, 15000);
+        $scope.$apply();
+    }, 15000);
 
 
     $scope.login = function() {
@@ -90,7 +84,8 @@ angular.module('bucketlist.controllers', [])
     }
 
     $scope.newAccount = function() {
-        if ($scope.user.password != $scope.user.confirmPassword) {
+        if ($scope.user
+            .password != $scope.user.confirmPassword) {
             Util.toast("Password mismatch");
             return false
         }
@@ -105,7 +100,7 @@ angular.module('bucketlist.controllers', [])
             if (response.data && response.data.username) {
                 Util.toast(response.data.username[0])
             } else {
-                Util.toast('Unable to complete registration')
+                Util.toast('Unable to complete registration');
             }
         });
 
@@ -122,9 +117,9 @@ angular.module('bucketlist.controllers', [])
         $scope.footer_text = 'Bucket list'
 
         $scope.showBucketListItems = function(index) {
-            bucketlist_id = $scope.bucketlists[index].id
+            bucketlist_id = $scope.bucketlists[index].id;
             $scope.activeId = bucketlist_id;
-            Util.broadcast(bucketlist_id, $scope.bucketlists[index].name)
+            Util.broadcast(bucketlist_id, $scope.bucketlists[index].name);
         };
 
         $scope.getNextPage = function() {
@@ -142,7 +137,7 @@ angular.module('bucketlist.controllers', [])
 
         $scope.delete = function(index) {
             bucketlist_id = $scope.bucketlists[index].id;
-            BucketlistService.delete(bucketlist_id, $scope)
+            BucketlistService.delete(bucketlist_id, $scope);
         };
 
         $scope.getBucketlist = function(url) {
@@ -154,7 +149,7 @@ angular.module('bucketlist.controllers', [])
         };
 
         $scope.toggleBucketListForm = function() {
-            if($scope.newBucketlist){
+            if ($scope.newBucketlist) {
                 $scope.bucketlist = {};
             }
             $scope.newBucketlist = !$scope.newBucketlist;

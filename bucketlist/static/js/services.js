@@ -26,7 +26,11 @@ angular.module('bucketlist.services', [])
         return {
             send: function(endpoint, method, data, successCallback, errorCallback) {
                 var url = endpoint.indexOf('http') == 0 ? endpoint : CONFIG.apiUrl + endpoint;
-                $http.defaults.headers.common['Authorization'] = 'DBL ' + StorageService.getItem('token');
+                var token = StorageService.getItem('token');
+                if(token){
+                    $http.defaults.headers.common['Authorization'] = 'DBL ' + token;
+                }
+
                 $http({
                     method: method,
                     url: url,
@@ -178,6 +182,7 @@ angular.module('bucketlist.services', [])
         },
         logout: function(response) {
             if ((response && response.status) || !response) {
+                StorageService.removeItem('token')
                 document.location.href = '/logout';
             }
         },
