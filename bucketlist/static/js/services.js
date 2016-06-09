@@ -25,7 +25,6 @@ angular.module('bucketlist.services', [])
 
         return {
             send: function(endpoint, method, data, successCallback, errorCallback) {
-                //Util.toast('Loading...');
                 var url = endpoint.indexOf('http') == 0 ? endpoint : CONFIG.apiUrl + endpoint;
                 $http.defaults.headers.common['Authorization'] = 'DBL ' + StorageService.getItem('token');
                 $http({
@@ -77,6 +76,7 @@ angular.module('bucketlist.services', [])
                     $scope.previous = response.data.previous;
                     Util.broadcast(response.data.results[0].id, response.data.results[0].name)
                     AuthService.refreshToken();
+
                 }
             }, function(response) {
                 Util.logout(response);

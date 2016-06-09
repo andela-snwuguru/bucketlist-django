@@ -5,7 +5,6 @@ angular.module('bucketlist.controllers', [])
 
         $scope.openMenu = function($mdOpenMenu, ev) {
             $mdOpenMenu(ev);
-            console.log('jjes')
         };
 
         function buildToggler(navID) {
