@@ -67,7 +67,9 @@ angular.module('bucketlist.services', [])
 .factory('BucketlistService', function(StorageService, Util, HttpService, AuthService, CONFIG) {
     return {
         get: function(url, $scope) {
+            Util.toast('Fetching Bucketlists')
             HttpService.get(url, function(response) {
+
                 if (response.data.results && response.data.results.length) {
                     $scope.activeId = response.data.results[0].id;
                     $scope.total = response.data.count;
@@ -78,11 +80,13 @@ angular.module('bucketlist.services', [])
                     AuthService.refreshToken();
 
                 }
+                Util.toast('done!')
             }, function(response) {
                 Util.logout(response);
             });
         },
         save: function($scope) {
+            Util.toast('Saving Bucketlist')
             var func = 'post';
             var path = '/bucketlists/';
             if ($scope.bucketlist.date_created) {
@@ -92,14 +96,17 @@ angular.module('bucketlist.services', [])
             HttpService[func](path, $scope.bucketlist, function(response) {
                 $scope.bucketlist = {};
                 $scope.toggleBucketListForm();
+                Util.toast('done!')
                 $scope.getBucketlist('/bucketlists/');
             }, function(response) {
                 Util.logout(response);
             });
         },
         delete: function(bucketlist_id, $scope) {
+            Util.toast('Deleting Bucketlist')
             HttpService.delete('/bucketlists/' + bucketlist_id, function(response) {
                 if (response.status === 204) {
+                    Util.toast('done!')
                     $scope.getBucketlist('/bucketlists/');
                 }
             }, function(response) {
@@ -112,6 +119,7 @@ angular.module('bucketlist.services', [])
 .factory('BucketlistItemService', function(StorageService, Util, HttpService, AuthService) {
     return {
         get: function(url, $scope) {
+            Util.toast('Fetching Bucketlist items')
             HttpService.get(url, function(response) {
                 if (response.data.results) {
                     $scope.total = response.data.count;
@@ -120,11 +128,13 @@ angular.module('bucketlist.services', [])
                     $scope.previous = response.data.previous;
                     AuthService.refreshToken();
                 }
+                Util.toast('done!')
             }, function(response) {
                 Util.logout(response);
             });
         },
         save: function($scope, toggle) {
+            Util.toast('Saving Bucketlist item')
             var func = 'post';
             var path = '/bucketlists/' + $scope.bucketlist_id + '/items/';
             if ($scope.item.date_created) {
@@ -142,8 +152,10 @@ angular.module('bucketlist.services', [])
             });
         },
         delete: function($scope) {
+            Util.toast('Deleting Bucketlist item')
             HttpService.delete('/bucketlists/' + $scope.bucketlist_id + '/items/' + $scope.item.id, function(response) {
                 if (response.status === 204) {
+                    Util.toast('done!')
                     $scope.getItems('/bucketlists/' + $scope.bucketlist_id + '/items/');
                     $scope.item = {};
                 }
