@@ -80,7 +80,8 @@ angular.module('bucketlist.services', [])
                     AuthService.refreshToken();
 
                 }else{
-                    $scope.bucketlists = []
+                    $scope.bucketlists = [];
+                    $scope.total = 0;
                 }
                 Util.toast('done!')
             }, function(response) {
@@ -130,7 +131,8 @@ angular.module('bucketlist.services', [])
                     $scope.previous = response.data.previous;
                     AuthService.refreshToken();
                 }else{
-                    $scope.items = []
+                    $scope.items = [];
+                    $scope.total = 0;
                 }
                 Util.toast('done!')
             }, function(response) {
