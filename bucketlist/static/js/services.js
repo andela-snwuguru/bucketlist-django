@@ -86,7 +86,8 @@ angular.module('bucketlist.services', [])
                 }
                 Util.toast('done!')
             }, function(response) {
-                Util.logout(response);
+                if(response.status != 404)
+                    Util.logout(response);
             });
         },
         save: function($scope) {
@@ -103,7 +104,8 @@ angular.module('bucketlist.services', [])
                 Util.toast('done!')
                 $scope.getBucketlist('/bucketlists/');
             }, function(response) {
-                Util.logout(response);
+                if(response.status != 404)
+                    Util.logout(response);
             });
         },
         delete: function(bucketlist_id, $scope) {
@@ -114,7 +116,8 @@ angular.module('bucketlist.services', [])
                     $scope.getBucketlist('/bucketlists/');
                 }
             }, function(response) {
-                Util.logout(response);
+                if(response.status != 404)
+                    Util.logout(response);
             });
         }
     };
@@ -137,7 +140,8 @@ angular.module('bucketlist.services', [])
                 }
                 Util.toast('done!')
             }, function(response) {
-                Util.logout(response);
+                if(response.status != 404)
+                    Util.logout(response);
             });
         },
         save: function($scope, toggle) {
@@ -155,7 +159,8 @@ angular.module('bucketlist.services', [])
                 }
                 Util.broadcast($scope.bucketlist_id, $scope.bucketlist_name)
             }, function(response) {
-                Util.logout(response);
+                if(response.status != 404)
+                    Util.logout(response);
             });
         },
         delete: function($scope) {
@@ -167,7 +172,8 @@ angular.module('bucketlist.services', [])
                     $scope.item = {};
                 }
             }, function(response) {
-                Util.logout(response);
+                if(response.status != 404)
+                    Util.logout(response);
             });
         }
     };
