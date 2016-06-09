@@ -79,8 +79,6 @@ angular.module('bucketlist.services', [])
                     Util.broadcast(response.data.results[0].id, response.data.results[0].name)
                     AuthService.refreshToken();
 
-                }else{
-                    document.location.href = '/';
                 }
                 Util.toast('done!')
             }, function(response) {
@@ -111,6 +109,9 @@ angular.module('bucketlist.services', [])
             HttpService.delete('/bucketlists/' + bucketlist_id, function(response) {
                 if (response.status === 204) {
                     Util.toast('done!')
+                    if($scope.bucketlists.length == 1){
+                        document.location.href = '/';
+                    }
                     $scope.getBucketlist('/bucketlists/');
                 }
             }, function(response) {
