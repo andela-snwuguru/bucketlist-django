@@ -30,7 +30,7 @@ class BucketListItem(models.Model):
     done = models.BooleanField(default=False)
     date_modified = models.DateTimeField(auto_now=True, auto_now_add=False)
     date_created = models.DateTimeField(auto_now=False, auto_now_add=True)
-    bucketlist = models.ForeignKey(BucketList, default=0)
+    bucketlist = models.ForeignKey(BucketList)
 
     def __unicode__(self):
         return self.task
