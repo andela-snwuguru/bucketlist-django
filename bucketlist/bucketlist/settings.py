@@ -46,6 +46,8 @@ try:
 except ImportError:
     from .production import *
 
+# REST
+
 # Application definition
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (

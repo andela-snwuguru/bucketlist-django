@@ -14,6 +14,7 @@ class BucketListSerializer(ModelSerializer):
         lookup_field='id'
     )
     user = SerializerMethodField()
+    items = SerializerMethodField()
 
     class Meta:
         model = BucketList
@@ -21,6 +22,7 @@ class BucketListSerializer(ModelSerializer):
             'id',
             'url',
             'user',
+            'items',
             'name',
             'date_modified',
             'date_created',
@@ -29,24 +31,23 @@ class BucketListSerializer(ModelSerializer):
     def get_user(self, obj):
         return obj.user.username
 
+    def get_items(self, obj):
+        queryset = BucketListItem.objects.filter(bucketlist=obj)
+        serializer = BucketListItemSerializer(queryset, many=True)
+        return serializer.data
+
 
 class BucketListItemSerializer(ModelSerializer):
-
-    bucketlist = SerializerMethodField()
 
     class Meta:
         model = BucketListItem
         fields = [
             'id',
-            'bucketlist',
             'task',
             'done',
             'date_modified',
             'date_created',
         ]
-
-    def get_bucketlist(self, obj):
-        return obj.bucketlist.name
 
 
 class UserSerializer(ModelSerializer):
