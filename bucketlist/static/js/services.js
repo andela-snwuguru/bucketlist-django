@@ -187,7 +187,7 @@ angular.module('bucketlist.services', [])
             }
         },
         errorHandler: function(response) {
-            if (response.status === 403)
+            if (response.status === 403 || response.status === 401)
                 Util.logout(response);
         }
     };

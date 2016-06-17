@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% load staticfiles %} {% block content %}
 
-<div ng-controller="AppCtrl" ng-cloak class="slide-bg">
+<div ng-controller="AppCtrl" ng-cloak class="slide-bg" ng-show="!token">
         <ul class="cb-slideshow">
             <li><span></span></li>
             <li><span></span></li>

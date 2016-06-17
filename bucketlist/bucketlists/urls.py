@@ -5,5 +5,6 @@ from bucketlists import views
 
 urlpatterns = [
     url(r'^$', views.index),
+    url(r'^dashboard/$', views.dashboard),
     url(r'^logout/$', logout, {'next_page': '/'}),
 ]

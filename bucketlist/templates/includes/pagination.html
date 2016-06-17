@@ -1,5 +1,4 @@
 {% load staticfiles %}
-<md-divider></md-divider>
 <div style="margin-top:10px;">
     <md-button aria-label="Previous" class="md-icon-button" style="margin-top:-10px; padding:0" ng-show="previous" ng-click="getPreviousPage()">
         <md-icon md-menu-origin md-svg-icon="{% static 'svg/prev.svg' %}"></md-icon>
@@ -7,5 +6,5 @@
     <md-button aria-label="Next" class="md-icon-button right" style="margin-top:-10px; padding:0" ng-show="next" ng-click="getNextPage()">
         <md-icon md-menu-origin md-svg-icon="{% static 'svg/next.svg' %}"></md-icon>
     </md-button>
-    <span class="right" style="width:50%"><small style="margin-right:20px; text-align:left;">{[{ total }]} {[{ footer_text }]}</small></span>
+
 </div>

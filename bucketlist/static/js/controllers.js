@@ -1,8 +1,9 @@
 angular.module('bucketlist.controllers', [])
-    .controller('AppCtrl', function($scope, $mdSidenav, $mdBottomSheet) {
+    .controller('AppCtrl', function($scope, $mdSidenav, $mdBottomSheet, StorageService) {
         $scope.toggleLeft = buildToggler('left');
         $scope.toggleRight = buildToggler('right');
-
+        $scope.token = StorageService.getItem('token');
+        $scope.loggedUser = StorageService.getItem('user');
         $scope.openMenu = function($mdOpenMenu, ev) {
             $mdOpenMenu(ev);
         };
@@ -68,14 +69,13 @@ angular.module('bucketlist.controllers', [])
         Util.toast("Authorization in progress");
         HttpService.post('/auth/login/', $scope.user, function(response) {
             if (response.data) {
-                if (response.data.login) {
-                    StorageService.setItem('token', response.data.token)
-                    document.location.href = '/'
-                }
+                StorageService.setItem('token', response.data.token);
+                StorageService.setItem('user', response.data.user);
+                document.location.href = '/';
             }
-            Util.toast('Unable to complete login process')
+            Util.toast('Unable to complete login process');
         }, function(response) {
-            Util.toast('Incorrect User credential')
+            Util.toast('Incorrect User credential');
         })
     }
 
@@ -93,12 +93,12 @@ angular.module('bucketlist.controllers', [])
         HttpService.post('/auth/register/', $scope.user, function(response) {
             if (response.data) {
                 $scope.login();
-                return false
+                return false;
             }
             Util.toast('Unable to complete registration');
         }, function(response) {
             if (response.data && response.data.username) {
-                Util.toast(response.data.username[0])
+                Util.toast(response.data.username[0]);
             } else {
                 Util.toast('Unable to complete registration');
             }
@@ -166,7 +166,7 @@ angular.module('bucketlist.controllers', [])
         $scope.bucketlist_name = '';
         $scope.bucketlist_id = 0;
         $scope.currentItemUrl = '';
-        $scope.footer_text = 'Bucket list items'
+        $scope.footer_text = 'Bucket List Items';
 
         $scope.newItem = function() {
             $scope.item = {};

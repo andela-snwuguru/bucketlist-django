@@ -18,6 +18,7 @@ md-content,
 .md-subheader,
 md-sidenav md-content {
     background-color: rgba(255, 255, 255, 1);
+    overflow-x: hidden !important;
 }
 
 md-bottom-sheet.md-default-theme,
@@ -216,9 +217,10 @@ ol {
 ol li {
     position: relative;
     font: bold italic 45px/1.5 Helvetica, Verdana, sans-serif;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     border-bottom: 1px solid #ccc;
     text-transform: capitalize;
+    margin-left: -41px;
 }
 
 li p {
