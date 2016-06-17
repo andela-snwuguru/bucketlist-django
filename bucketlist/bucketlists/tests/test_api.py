@@ -33,7 +33,7 @@ class AccountTest(APITestCase):
         }
         response = self.client.post('/api/v1/auth/login/', user_detail)
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.data.get('login'))
+        self.assertEqual(response.data.get('user') ,'sundayguru')
         user_detail['username'] = 'wrong'
         response = self.client.post('/api/v1/auth/login/', user_detail)
         self.assertEqual(response.status_code, 400)
@@ -47,7 +47,7 @@ class BucketlistTest(APITestCase):
         """Set up base user and details for test running."""
         self.register()
         self.token = self.login()
-        self.client.credentials(HTTP_AUTHORIZATION=self.token)
+        self.client.credentials(HTTP_AUTHORIZATION ='DBL {}'.format(self.token))
 
     def register(self):
         user_detail = {
@@ -118,7 +118,7 @@ class BucketlistItemTest(APITestCase):
         """Set up base user and details for test running."""
         self.register()
         self.token = self.login()
-        self.client.credentials(HTTP_AUTHORIZATION=self.token)
+        self.client.credentials(HTTP_AUTHORIZATION ='DBL {}'.format(self.token))
         bucketlists = self.create_bucketlist('test list')
         self.bucketlist_id = bucketlists.data.get('id')
         self.item_path = '/api/v1/bucketlists/' + \
