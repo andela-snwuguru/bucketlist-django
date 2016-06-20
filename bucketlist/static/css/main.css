@@ -3,6 +3,10 @@ md-toolbar:not(.md-menu-toolbar) {
     background-color: rgb(231, 245, 251);
 }
 
+md-toast{
+    text-transform: capitalize !important;
+}
+
 body {
     font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
 }
