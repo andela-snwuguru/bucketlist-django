@@ -9,7 +9,7 @@
 </md-subheader>
 <md-divider></md-divider>
 <div style="text-align:center; padding-top: 20px;" ng-show="!bucketlists.length">
-  <img src="{% static 'images/empty-blue-bucket.jpg' %}" style="max-width: 100px;">
+  <img src="{% static 'svg/empty-search.svg' %}" style="max-width: 100px;">
   <h3>Empty Bucket List</h3>
   <p>
   <md-button aria-label="{[{ !newBucketlist ? 'New Bucket List' : 'Cancel' }]}" ng-click="toggleBucketListForm()" class="md-raised {[{ !newBucketlist ? 'md-primary' : 'md-warn' }]}" style="width:100px;">
