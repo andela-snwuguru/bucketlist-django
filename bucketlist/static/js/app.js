@@ -6,7 +6,7 @@ angular.module('Bucketlist', ['bucketlist.controllers', 'bucketlist.services', '
         $interpolateProvider.endSymbol('}]}');
     })
     .constant('CONFIG', {
-        apiUrl: document.domain == '127.0.0.1' ? 'http://127.0.0.1:8000/api/v1' : 'https://littlehope.herokuapp.com/api/v1',
+        apiUrl: document.domain == '127.0.0.1' ? '//127.0.0.1:8000/api/v1' : '//littlehope.herokuapp.com/api/v1',
         loadItemsEvent: 'active-bucketlist-change'
     }).run(function(StorageService){
         const token = StorageService.getItem('token');
