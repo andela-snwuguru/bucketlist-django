@@ -1,0 +1,22 @@
+{% load staticfiles %}
+<md-menu class="list-secondary" style="padding: 13px 0;">
+    <md-button aria-label="Open Option Menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+        <md-icon md-menu-origin md-svg-icon="{% static 'svg/more.svg' %}"></md-icon>
+    </md-button>
+    <md-menu-content width="4">
+        <md-menu-item>
+            <md-button ng-click="edit($index)">
+                <md-icon md-menu-origin md-svg-icon="{% static 'svg/pencil.svg' %}" class="left" style="margin-top:5px"></md-icon>
+                <span class="left">Edit</span>
+            </md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+            <md-button ng-click="delete($index)">
+                <md-icon md-menu-origin md-svg-icon="{% static 'svg/delete.svg' %}" class="left" style="margin-top:5px"></md-icon>
+
+                <span class="left">Delete</span>
+            </md-button>
+        </md-menu-item>
+    </md-menu-content>
+</md-menu>

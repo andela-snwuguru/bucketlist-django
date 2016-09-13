@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<md-card  class="login-panel">
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">User Login</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+        <form ng-submit="login()" method="post" onsubmit="return false;">{% csrf_token %}
+            <md-input-container class="md-block">
+                <md-icon md-svg-src="{% static 'svg/avatar.svg' %}" class="username"></md-icon>
+                <input ng-model="user.username" type="text" placeholder="Username (required)" ng-required="true">
+            </md-input-container>
+            <md-input-container class="md-block">
+                <md-icon md-svg-src="{% static 'svg/padlock.svg' %}" class="password"></md-icon>
+                <input ng-model="user.password" type="password" placeholder="Password (required)" ng-required="true">
+            </md-input-container>
+            <md-button class="md-raised md-primary right" type="submit">Login</md-button>
+        </form>
+    </md-card-content>
+    <p style="padding-left:20px;">
+            Don't have an account?
+        </p>
+    <md-card-actions layout="row" layout-align="start">
+
+        <md-button flex="50" class="md-raised right" ng-click="showRegisterForm()">Create account</md-button>
+    </md-card-actions>
+</md-card>

@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% load staticfiles %} {% block content %}
+
+<div ng-controller="AppCtrl" ng-cloak class="slide-bg" ng-show="!token">
+        <ul class="cb-slideshow">
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+            <li><span></span></li>
+        </ul>
+<div>
+        <md-toolbar style="background:rgba(255, 255, 255, .8);">
+                <div class="md-toolbar-tools">
+                    <h2>
+                        <span>
+                          <img src="{% static 'images/logo.png' %}" alt="Bucket List" class="logo"  />
+                        </span>
+                    </h2>
+                    <span flex></span>
+                </div>
+            </md-toolbar>
+
+    </div>
+    <div layout-gt-xs="row" layout-xs="column" ng-controller="AuthCtrl">
+
+        <div flex>
+
+            <div hide-xs></div>
+            <div class="quote"><h3>{[{ quote.message }]}</h3>
+                <small class="author"><i>{[{ quote.name }]}</i></small>
+            </div>
+            <p class="slogan">Pen it down, challenge yourself to do more</p>
+        </div>
+        <div flex class="padding">
+
+            <div flex='70'>
+                {% include 'includes/login.html' %}
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/ng-template" id="social-buttons.html">
+    {% include 'includes/social-buttons.html' %}
+</script>
+<script type="text/ng-template" id="register.html" ng-controller="AppCtrl">
+    {% include 'includes/register.html' %}
+</script>
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<md-subheader class="md-primary">
+    <h3>My Bucket Lists
+    <md-button aria-label="{[{ newBucketlist ? 'New Bucket List' : 'Cancel' }]}" ng-click="toggleBucketListForm()" class="md-icon-button right" ng-show="bucketlists.length">
+      <md-icon md-svg-icon="{% static 'svg/add-circle.svg' %}" ng-show="!newBucketlist"></md-icon>
+      <md-icon md-svg-icon="{% static 'svg/cancel.svg' %}" ng-show="newBucketlist"></md-icon>
+    </md-button>
+  </h3> {% include 'includes/new-bucketlist.html' %}
+</md-subheader>
+<md-divider></md-divider>
+<div style="text-align:center; padding-top: 20px;" ng-show="!bucketlists.length">
+  <img src="{% static 'svg/empty-search.svg' %}" style="max-width: 100px;">
+  <h3>Empty Bucket List</h3>
+  <p>
+  <md-button aria-label="{[{ !newBucketlist ? 'New Bucket List' : 'Cancel' }]}" ng-click="toggleBucketListForm()" class="md-raised {[{ !newBucketlist ? 'md-primary' : 'md-warn' }]}" style="width:100px;">
+      <md-icon md-svg-icon="{% static 'svg/add.svg' %}" ng-show="!newBucketlist"></md-icon>
+      <md-icon md-svg-icon="{% static 'svg/cancel.svg' %}" ng-show="newBucketlist"></md-icon>
+      {[{ !newBucketlist ? 'Add New' : 'Cancel' }]}
+    </md-button>
+
+  </p>
+</div>
+<ol class='sideList'>
+    <li ng-click="showBucketListItems($index)" class="{[{  activeId === bucket.id ? 'li-active' : '' }]}" ng-repeat="bucket in bucketlists">
+        <span> {[{ bucket.name}]} <br/> <small>{[{ bucket.date_created.split('T')[0] }]}</small></span>
+        {% include 'includes/bucketlist-option-menu.html' %}
+    </li>
+</ol>
+{% include 'includes/pagination.html' %}

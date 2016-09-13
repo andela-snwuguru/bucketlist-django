@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% load staticfiles %} {% block content %}
+<div ng-controller="AppCtrl" layout="column" style="height:100vh;" ng-show="token">
+    <section layout="row" flex >
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="background:rgba(255, 255, 255, .2);">
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">
+            <span>
+              {% include 'includes/logo.html' %}
+            </span>
+          <span flex></span>
+          {% include 'includes/user-menu.html' %}
+        </h1>
+            </md-toolbar>
+            <md-content ng-controller="BucketlistCtrl">
+                <section>
+                    {% include 'includes/bucketlists.html' %}
+                </section>
+            </md-content>
+        </md-sidenav>
+        <md-content flex ng-controller="BucketlistItemCtrl">
+            <div layout="column" layout-fill layout-align="top left">
+                <md-toolbar hide-gt-md>
+                    <div class="md-toolbar-tools">
+                        <h2>
+            <span>
+              {% include 'includes/logo.html' %}
+            </span>
+          </h2>
+                        <span flex></span>
+                    </div>
+                </md-toolbar>
+                <section>
+                    {% include 'includes/bucketlist-items.html' %}
+                </section>
+            </div>
+            <div flex></div>
+            <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+                <section>
+                    <div>
+                        {% include 'includes/new-bucketlist-item.html' %}
+                    </div>
+                </section>
+            </md-sidenav>
+        </md-content>
+    </section>
+    {% endblock content %}
